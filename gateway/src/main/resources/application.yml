@@ -57,40 +57,36 @@ spring:
           predicates:
             - Path=/quiz/**
           filters:
-            - name: JwtAuthorizationFilter # Apply JWT filter to this route
-            - name: RequestHeaderToRequestUri
+            - name: JwtAuthorizationFilter
               args:
-                role: "admin"
+                roles: ["admin", "instructor"]  # Multiple roles for quiz-service
 
         - id: question-service
           uri: lb://question-service
           predicates:
             - Path=/question/**
           filters:
-            - name: JwtAuthorizationFilter # Apply JWT filter to this route
-            - name: RequestHeaderToRequestUri
+            - name: JwtAuthorizationFilter
               args:
-                role: "admin"
+                roles: ["admin"]  # Only admin for question-service
 
         - id: submission-service
           uri: lb://submission-service
           predicates:
             - Path=/submission/**
           filters:
-            - name: JwtAuthorizationFilter # Apply JWT filter to this route
-            - name: RequestHeaderToRequestUri
+            - name: JwtAuthorizationFilter
               args:
-                role: "user"
+                roles: ["user"]  # Only user for submission-service
 
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/user/**
+            - Path=/auth/**
           filters:
-            - name: JwtAuthorizationFilter # Apply JWT filter to this route
-            - name: RequestHeaderToRequestUri
+            - name: JwtAuthorizationFilter
               args:
-                role: "user"
+                roles: ["user"]  # Only user for user-service
 
 
 #  datasource:

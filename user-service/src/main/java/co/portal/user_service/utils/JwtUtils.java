@@ -1,9 +1,7 @@
-package co.portal.gateway.utils;
-
+package co.portal.user_service.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -53,24 +51,13 @@ public class JwtUtils {
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 
-    public Boolean validateToken(String token) {
-        return (validateTokenSignature(token) && !isTokenExpired(token));
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    public Boolean validateTokenSignature(String token) {
-        try {
-            Jwts.parser()
-                    .setSigningKey(SECRET_KEY)  // Set the secret key for signature verification
-                    .parseClaimsJws(token);
-            return true;
-        } catch (SignatureException e) {
-            return false;  // Signature is invalid
-        }
-    }
-
-    public List<String> extractRoles(String token) {
+    public List extractRoles(String token) {
         Claims claims = extractAllClaims(token);
         return claims.get("roles", List.class); // Extract roles claim
     }
 }
-
