@@ -49,44 +49,43 @@ spring:
   application:
     name: gateway
 
-  cloud:
-    gateway:
-      routes:
-        - id: quiz-service
-          uri: lb://quiz-service
-          predicates:
-            - Path=/quiz/**
-          filters:
-            - name: JwtAuthorizationFilter
-              args:
-                roles: ["admin", "instructor"]  # Multiple roles for quiz-service
 
-        - id: question-service
-          uri: lb://question-service
-          predicates:
-            - Path=/question/**
-          filters:
-            - name: JwtAuthorizationFilter
-              args:
-                roles: ["admin"]  # Only admin for question-service
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: quiz-service
+#          uri: lb://quiz-service
+#          predicates:
+#            - Path=/quiz/**
+#          filters:
+#            - name: JwtAuthorizationFilter
+#              args:
+#                roles: ["admin", "instructor"]  # Multiple roles for quiz-service
+#
+#        - id: question-service
+#          uri: lb://question-service
+#          predicates:
+#            - Path=/question/**
+#          filters:
+#            - name: JwtAuthorizationFilter
+#              args:
+#                roles: ["admin"]  # Only admin for question-service
+#
+#        - id: submission-service
+#          uri: lb://submission-service
+#          predicates:
+#            - Path=/submission/**
+#          filters:
+#            - name: JwtAuthorizationFilter
+#              args:
+#                roles: ["user"]  # Only user for submission-service
+#
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates:
+#            - Path=/auth/**
+#
 
-        - id: submission-service
-          uri: lb://submission-service
-          predicates:
-            - Path=/submission/**
-          filters:
-            - name: JwtAuthorizationFilter
-              args:
-                roles: ["user"]  # Only user for submission-service
-
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/auth/**
-          filters:
-            - name: JwtAuthorizationFilter
-              args:
-                roles: ["user"]  # Only user for user-service
 
 
 #  datasource:

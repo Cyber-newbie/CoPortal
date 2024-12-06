@@ -5,12 +5,11 @@
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.stereotype.Service;
-//import paybank.astro.repository.UserRepository;
 //
 //@Service
 //public class UserDetailsServiceImpl implements UserDetailsService {
 //    @Autowired
-//    private UserRepository userRepository;
+//    private UserRepos userRepository;
 //
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
