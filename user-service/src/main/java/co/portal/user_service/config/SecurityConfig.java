@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll() // Permit authentication endpoint
-                .anyRequest().authenticated()  // All other requests need to be authenticated
+//                .anyRequest().authenticated()  // All other requests need to be authenticated
                 .and()
                 .httpBasic().disable() // Disabling basic authentication
                 .formLogin().disable() // Disabling form login if needed

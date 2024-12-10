@@ -3,6 +3,7 @@ package co.portal.submission_service.dto.submission;
 import lombok.Getter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,4 +14,7 @@ public class SubmissionRequest {
 
     @NotEmpty
     private List<UserAnswers> userAnswers;
+
+    @NotNull
+    private int quizId;
 }

@@ -38,16 +38,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/admin/{username}")
+    @GetMapping("/{username}")
     public ResponseEntity<?> getUser(@PathVariable String username) throws Exception {
 
         try {
             User user = this.userService.getUserByName(username);
-            UserResponse userResponse = new UserResponse();
-            userResponse.setUser(user);
-            userResponse.setStatus("200");
-            userResponse.setMessage("User fetched successfully");
-            return ResponseEntity.ok(userResponse);
+//            UserResponse userResponse = new UserResponse();
+//            userResponse.setUser(user);
+//            userResponse.setStatus("200");
+//            userResponse.setMessage("User fetched successfully");
+            return ResponseEntity.ok(user);
         } catch (Exception e) {
              ErrorResponse errorResponse = new ErrorResponse("500", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
