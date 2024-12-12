@@ -7,6 +7,8 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class QuestionRequest {
 
+    private int questionId;
+
     @NotBlank
     private String question;
 

@@ -1,9 +1,7 @@
 package co.portal.question_service.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Question {
 
     @Id
@@ -39,10 +39,10 @@ public class Question {
     @Column
     private String option4;
 
-    @JoinColumn(name = "quiz_id")
-    private int quizId;
 
-    public Question(String question, String answer, String image, String option1, String option2, String option3, String option4) {
+    public Question(String question, String answer, String image,
+                    String option1, String option2, String option3, String option4) {
+
         this.question = question;
         this.answer = answer;
         this.image = image;

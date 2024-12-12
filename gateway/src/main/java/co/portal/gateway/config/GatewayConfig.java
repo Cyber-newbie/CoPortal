@@ -15,6 +15,7 @@ import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,13 +35,17 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 // Route for quiz-service
+                .route("quiz-service", r -> r.path("/quiz/admin/**")
+                        .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Collections.singletonList("ADMIN"))))
+                        .uri("lb://QUIZ-SERVICE")
+                )
                 .route("quiz-service", r -> r.path("/quiz/**")
-                        .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("ADMIN", "INSTRUCTOR"))))
+                        .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("USER"))))
                         .uri("lb://QUIZ-SERVICE")
                 )
                 // Route for question-service
                 .route("question-service", r -> r.path("/question/**")
-                        .filters(f -> f.filter(createJwtAuthorizationFilter("question-service", Arrays.asList("USER", "ADMIN", "INSTRUCTOR"))))
+                        .filters(f -> f.filter(createJwtAuthorizationFilter("question-service", Arrays.asList("ADMIN", "INSTRUCTOR"))))
                         .uri("lb://QUESTION-SERVICE")
                 )
                 // Route for submission-service

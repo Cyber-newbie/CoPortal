@@ -1,9 +1,8 @@
 package co.portal.quiz_service.entity;
 
+import co.portal.quiz_service.dto.Question;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,6 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Quiz {
 
     @Id
@@ -47,6 +48,9 @@ public class Quiz {
     private Category category;
 
     private long userId;
+
+    @Transient
+    private List<Question> questions = new ArrayList<>();
 
     public Quiz(String title, String description, String maxMarks, String numberOfQuestions, Boolean active) {
         this.title = title;

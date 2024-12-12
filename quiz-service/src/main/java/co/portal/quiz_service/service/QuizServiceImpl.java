@@ -1,9 +1,13 @@
 package co.portal.quiz_service.service;
 
+import co.portal.quiz_service.dto.Question;
+import co.portal.quiz_service.dto.QuestionResponse;
 import co.portal.quiz_service.dto.QuizRequest;
 import co.portal.quiz_service.dto.user.UserDTO;
 import co.portal.quiz_service.entity.Category;
 import co.portal.quiz_service.entity.Quiz;
+import co.portal.quiz_service.exception.NotFoundException;
+import co.portal.quiz_service.exception.QuizNotFoundException;
 import co.portal.quiz_service.repository.CategoryRepository;
 import co.portal.quiz_service.repository.QuizRepository;
 import co.portal.quiz_service.service.QuizService;
@@ -29,9 +33,11 @@ public class QuizServiceImpl implements QuizService {
     private CategoryRepository categoryRepository;
     private QuizUtils quizUtils;
 
-    @Value("${user.service.url")
+    @Value("${user.service.url}")
     private String userServiceUrl;
 
+    @Value("${question.service.url}")
+    private String questionServiceUrl;
 
     @Autowired
     public QuizServiceImpl(QuizRepository quizRepository,
@@ -47,50 +53,55 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    @Transactional
     public Quiz createQuiz(QuizRequest quiz, String username) throws Exception {
 
-        Quiz newQuiz = new Quiz();
         UserDTO user = this.getLoggedInUser(username);
 
-        newQuiz.setTitle(quiz.getTitle());
-        newQuiz.setDescription(quiz.getDescription());
-        newQuiz.setMaxMarks(quiz.getMaxMarks());
-        newQuiz.setNumberOfQuestions(quiz.getNumberOfQuestions());
-        newQuiz.setActive(quiz.getActive());
-        newQuiz.setUserId(user.getId());
-
         //get and set category
-        Optional<Category> category = this.categoryRepository.findById(quiz.getCategoryId());
-        category.ifPresent(newQuiz::setCategory);
-        //create questions
-        for(QuestionRequest ques : quiz.getQuestions()){
-            Question newQuestion = new Question();
+        Category category = this.categoryRepository.findById(quiz.getCategoryId())
+                .orElseThrow(() ->
+                        new NotFoundException("Category not found"));
 
-            newQuestion.setQuiz(newQuiz);
-            newQuestion.setQuestion(ques.getQuestion());
-            newQuestion.setAnswer(ques.getAnswer());
+        Quiz newQuiz = Quiz.builder()
+                .title(quiz.getTitle())
+                .description(quiz.getDescription())
+                .maxMarks(quiz.getMaxMarks())
+                .timeLimit(quiz.getTimeLimit())
+                .category(category)
+                .deadline(quiz.getDeadline())
+                .userId(user.getId())
+                .active(quiz.getActive())
+                .build();
 
-            newQuestion.setOption1(ques.getOption1());
-            newQuestion.setOption2(ques.getOption2());
-            newQuestion.setOption3(ques.getOption3());
-            newQuestion.setOption4(ques.getOption4());
+        try {
+            //create quiz
+            Quiz createdQuiz = quizRepository.save(newQuiz);
 
-            questionsList.add(newQuestion);
+            //create questions
+            Optional<QuestionResponse> response = Optional.ofNullable(restTemplate.postForObject(questionServiceUrl + "/save/" + createdQuiz.getId(),
+                    quiz.getQuestions(), QuestionResponse.class));
+
+            response.ifPresent(questionResponse -> newQuiz.setQuestions(questionResponse.getQuestions()));
+
+            return newQuiz;
+        } catch (RestClientException e) {
+            throw new RuntimeException("failed to create quiz with questions: " + e.getMessage());
         }
-
-        //add questionList to quiz
-        newQuiz.setQuestions(questionsList);
-
-        quizRepository.save(newQuiz);
-
-        return newQuiz;
     }
 
     @Override
     public Quiz getQuiz(int id) throws Exception {
         return this.quizRepository.findById(id).orElseThrow(() -> new Exception("Quiz not found"));
     }
+
+//    @Override
+//    public List<Question> getQuizQuestions(int quizId) throws Exception {
+//
+//        Quiz quiz = this.quizRepository.findById(quizId).orElseThrow(() ->
+//                new QuizNotFoundException("Quiz not found"));
+//
+//        return this.quizRepository.getQuizQuestions(quizId);
+//    }
 
     @Override
     public List<Quiz> getAllQuizes() throws Exception {
@@ -101,8 +112,6 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Quiz updateQuiz(int quizId, QuizRequest request) throws Exception {
 
-        List<Question> questionsList = new ArrayList<>();
-
         Quiz quiz = this.getQuiz(quizId);
         quiz.setTitle(request.getTitle());
         quiz.setDescription(request.getDescription());
@@ -111,23 +120,6 @@ public class QuizServiceImpl implements QuizService {
         quiz.setActive(request.getActive());
 
         //create questions
-        for(QuestionRequest ques : request.getQuestions()){
-            Question newQuestion = new Question();
-
-            newQuestion.setQuiz(quiz);
-            newQuestion.setQuestion(ques.getQuestion());
-            newQuestion.setAnswer(ques.getAnswer());
-
-            newQuestion.setOption1(ques.getOption1());
-            newQuestion.setOption2(ques.getOption2());
-            newQuestion.setOption3(ques.getOption3());
-            newQuestion.setOption4(ques.getOption4());
-
-            questionsList.add(newQuestion);
-        }
-
-        quiz.setQuestions(questionsList);
-
 
 
         return null;

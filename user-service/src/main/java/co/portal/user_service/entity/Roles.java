@@ -1,6 +1,8 @@
 package co.portal.user_service.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -11,6 +13,8 @@ import java.util.List;
 @Table(name = "role")
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 //@ToString
 public class Roles {
     @Id

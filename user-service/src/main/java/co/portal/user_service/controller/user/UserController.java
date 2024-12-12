@@ -1,9 +1,6 @@
 package co.portal.user_service.controller.user;
 
-import co.portal.user_service.dto.user.ErrorResponse;
-import co.portal.user_service.dto.user.LoginRequest;
-import co.portal.user_service.dto.user.UserRequest;
-import co.portal.user_service.dto.user.UserResponse;
+import co.portal.user_service.dto.user.*;
 import co.portal.user_service.entity.User;
 import co.portal.user_service.service.user.UserService;
 import co.portal.user_service.utils.mapper.UserMapper;
@@ -36,6 +33,15 @@ public class UserController {
         UserResponse response = this.userMapper.toDto(createdUser, "201", "User created successfully");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PutMapping("/admin/assign-role/{userId}")
+    public ResponseEntity<UserResponse> assignRoleToUser(@PathVariable("userId") Integer userId,
+                                            @Valid @RequestBody RoleRequest request) throws Exception {
+
+        User user = this.userService.assignRoleToUser(userId, request.getRoles());
+        UserResponse response = this.userMapper.toDto(user, "204", "User's roles updated");
+        return ResponseEntity.status(204).body(response);
     }
 
     @GetMapping("/{username}")

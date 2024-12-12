@@ -5,31 +5,39 @@ import co.portal.user_service.dto.user.UserRequest;
 import co.portal.user_service.dto.user.UserResponse;
 import co.portal.user_service.entity.Roles;
 import co.portal.user_service.entity.User;
+import co.portal.user_service.exception.RoleNotFoundException;
 import co.portal.user_service.exception.UserAlreadyExistsException;
 import co.portal.user_service.exception.UserNotFoundException;
+import co.portal.user_service.repository.RoleRepository;
 import co.portal.user_service.repository.UserRepository;
 import co.portal.user_service.utils.JwtUtils;
 import co.portal.user_service.utils.mapper.UserMapper;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
      private UserRepository userRepository;
+     private RoleRepository roleRepository;
      private EntityManager entityManager;
      private JwtUtils jwtUtils;
      private UserMapper userMapper;
     @Autowired
     public UserServiceImpl(UserRepository userRepository, JwtUtils jwtUtils,
-                           EntityManager entityManager, UserMapper userMapper) {
+                           EntityManager entityManager, UserMapper userMapper,
+                           RoleRepository roleRepository) {
+
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.entityManager = entityManager;
         this.jwtUtils = jwtUtils;
         this.userMapper = userMapper;
@@ -110,6 +118,25 @@ public class UserServiceImpl implements UserService {
         }
         System.out.println("Admin already exists");
         return null;
+    }
+
+    @Override
+    @Transactional
+    public User assignRoleToUser(int userId, String[] roles) throws Exception {
+
+        User user = Optional.ofNullable(this.userRepository.findById(userId)).orElseThrow(
+                () -> new UserNotFoundException("User not found")
+        );
+
+        List<Roles> assignRoles = Arrays.stream(roles)
+                .map((role) -> Optional.ofNullable
+                        (this.roleRepository.findByRole(role))
+                        .orElseThrow(() -> new RoleNotFoundException(role + " role do not exists"))).collect(Collectors.toList());
+
+
+        user.setRoles(assignRoles);
+
+        return this.entityManager.merge(user);
     }
 
 

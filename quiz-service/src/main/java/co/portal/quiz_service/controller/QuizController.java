@@ -1,5 +1,7 @@
 package co.portal.quiz_service.controller;
 
+import co.portal.quiz_service.dto.Question;
+import co.portal.quiz_service.dto.QuestionResponse;
 import co.portal.quiz_service.dto.QuizRequest;
 import co.portal.quiz_service.dto.QuizResponse;
 import co.portal.quiz_service.entity.Quiz;
@@ -23,7 +25,7 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @PostMapping
+    @PostMapping("/admin/create")
     public ResponseEntity<QuizResponse> createQuiz(@Valid  @RequestBody QuizRequest quiz,
                                                    @RequestHeader("loggedInUsername") String username ) throws Exception {
 
@@ -45,5 +47,14 @@ public class QuizController {
         quizResponse.setMessage("Quiz list retrieved successfully");
         return ResponseEntity.status(HttpStatus.OK).body(quizResponse);
     }
+
+//    @GetMapping("/{quizId}")
+//    public ResponseEntity<QuestionResponse> getQuizQuestions(@PathVariable("quizId") Integer quizId) throws Exception {
+//
+//        List<Question> questions = this.quizService.getQuizQuestions(quizId);
+//        QuestionResponse response =  new QuestionResponse();
+//        response.setQuestions(questions);
+//        return ResponseEntity.status(HttpStatus.OK).body(response);
+//    }
 
 }
