@@ -46,6 +46,13 @@ server:
   port: 8080
 
 spring:
+
+  rabbitmq:
+    host:localhost
+    port:5672
+    username:username
+    password:password
+
   application:
     name: gateway
 
