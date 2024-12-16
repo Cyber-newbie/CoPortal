@@ -1,8 +1,13 @@
 package co.portal.gateway.config;
 
+import co.portal.gateway.dto.ActivityLog;
+import co.portal.gateway.service.RabbitMQService;
 import co.portal.gateway.utils.JwtUtils;
+import co.portal.gateway.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -31,11 +36,33 @@ public class GatewayConfig {
     @Autowired
     private JwtUtils jwtUtils;
 
+    @Autowired
+    private RabbitMQService rabbitMQService;
+
+    @Bean
+    public GlobalFilter postGlobalFilter() {
+        return (exchange, chain) -> {
+            return chain.filter(exchange)
+                    .then(Mono.fromRunnable(() -> {
+                        log.info("POST GLOBAL FILTER!");
+
+                        ActivityLog activityLog = ActivityLog.builder()
+                                .responseBody(exchange.getResponse())
+                                .statusCode(exchange.getResponse().getStatusCode().toString())
+                                .build();
+
+                        rabbitMQService.publishLog(activityLog, Utils.LogsActions.UPDATE.name());
+
+                    }));
+        };
+    }
+
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 // Route for quiz-service
                 .route("quiz-service", r -> r.path("/quiz/admin/**")
+//                                .filters(f -> f.filters(createJwtAuthorizationFilter(), APILogFilter()))
                         .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Collections.singletonList("ADMIN"))))
                         .uri("lb://QUIZ-SERVICE")
                 )
@@ -91,6 +118,27 @@ public class GatewayConfig {
 
             return exchange.getResponse().setComplete();  // End the request-response cycle
         };
+    }
+
+
+
+    private GatewayFilter APILogFilter(){
+        return (ServerWebExchange exchange, GatewayFilterChain chain) -> {
+            ActivityLog activityLog = ActivityLog.builder()
+                    .requestURI(exchange.getRequest().getURI().toString())
+                    .requestBody(exchange.getRequest().getBody())
+                    .responseBody(exchange.getResponse())
+                    .statusCode(exchange.getResponse().getStatusCode().toString())
+                    .username(exchange.getRequest().getHeaders().getFirst("loggedInUsername"))
+                    .build();
+
+            log.info("SENDING ACTIVITY TO LOGGING SERVICE TO STORE IN DB {}", activityLog);
+//
+            rabbitMQService.publishLog(activityLog, Utils.LogsActions.CREATE.name());
+
+            return chain.filter(exchange);
+        };
+
     }
 
     private boolean hasRequiredRole(List<String> requiredRoles, List<String> userRoles) {
