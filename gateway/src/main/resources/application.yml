@@ -54,6 +54,10 @@ spring:
     username:guest 
     password:guest
 
+  logging:
+    level:
+      co.portal.gateway: DEBUG
+
   application:
     name: gateway
 

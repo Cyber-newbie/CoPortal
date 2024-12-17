@@ -5,17 +5,26 @@ import co.portal.gateway.service.RabbitMQService;
 import co.portal.gateway.utils.JwtUtils;
 import co.portal.gateway.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
+import org.reactivestreams.Publisher;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.core.io.buffer.DataBufferFactory;
+import org.springframework.core.io.buffer.DefaultDataBuffer;
+import org.springframework.core.io.buffer.DefaultDataBufferFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.http.server.reactive.ServerHttpResponseDecorator;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
@@ -39,21 +48,169 @@ public class GatewayConfig {
     @Autowired
     private RabbitMQService rabbitMQService;
 
+//    @Bean
+//    public GlobalFilter postGlobalFilter() {
+//        return (exchange, chain) -> {
+//
+//
+//            ServerHttpResponse originalResponse = exchange.getResponse();
+//
+//            // log the response body
+//            log.info("POST Filter and response status: {}", originalResponse.getStatusCode());
+//            ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(originalResponse) {
+//                @Override
+//                public Mono<Void> writeWith(org.reactivestreams.Publisher<? extends DataBuffer> body) {
+//                    log.info("Writingggg with");
+//                    return Utils.captureResponseBody(body)
+//                            .flatMap(responseBody -> {
+//                                log.info("Captured Response Body: {}", responseBody);
+//
+//                                HttpStatus statusCode = exchange.getResponse().getStatusCode();
+//
+//                                // Build and send the ActivityLog to RabbitMQ
+//                                ActivityLog activityLog = ActivityLog.builder()
+//                                        .responseBody(responseBody)
+//                                        .statusCode(statusCode != null ? statusCode.name() : "UNKNOWN")
+//                                        .build();
+//
+//                                rabbitMQService.publishLog(activityLog, Utils.LogsActions.UPDATE.name());
+//
+//                                // Write the response body back to the client
+//                                byte[] content = responseBody.getBytes(StandardCharsets.UTF_8);
+//                                return super.writeWith(Mono.just(exchange.getResponse().bufferFactory().wrap(content)));
+//                            })
+//                            .onErrorResume(e -> {
+//                                log.error("Error capturing response body", e);
+//                                return super.writeWith(body);
+//                            });
+//                }
+//
+//                @Override
+//                public Mono<Void> writeAndFlushWith(org.reactivestreams.Publisher<? extends Publisher<? extends DataBuffer>> body) {
+//                    log.info("Writingggg flush");
+//                    return Mono.from(body) // Unwrap the outer Publisher
+//                            .flatMapMany(dataBufferPublisher ->
+//                                    Utils.captureResponseBody(dataBufferPublisher)
+//                                            .flatMap(responseBody -> {
+//                                                log.info("Captured Response Body: {}", responseBody);
+//
+//                                                HttpStatus statusCode = exchange.getResponse().getStatusCode();
+//
+//                                                // Build and send the ActivityLog to RabbitMQ
+//                                                ActivityLog activityLog = ActivityLog.builder()
+//                                                        .responseBody(responseBody)
+//                                                        .statusCode(statusCode != null ? statusCode.name() : "UNKNOWN")
+//                                                        .build();
+//
+//                                                rabbitMQService.publishLog(activityLog, Utils.LogsActions.UPDATE.name());
+//
+//                                                // Convert the modified response body to DataBuffer
+//                                                byte[] content = responseBody.getBytes(StandardCharsets.UTF_8);
+//                                                DataBuffer dataBuffer = exchange.getResponse().bufferFactory().wrap(content);
+//                                                return Mono.just(dataBuffer);
+//                                            })
+//                                            .onErrorResume(e -> {
+//                                                log.error("Error capturing response body", e);
+//                                                return Mono.from(dataBufferPublisher); // Fallback to the original body
+//                                            })
+//                            )
+//                            .map(Mono::just) // Wrap each DataBuffer into a Publisher
+//                            .as(super::writeAndFlushWith); // Pass to parent writeAndFlushWith
+//                }
+//            };
+//            log.info("POST Filter ENDED");
+//            return chain.filter(exchange.mutate().response(decoratedResponse).build());
+//        };
+//    }
+
     @Bean
     public GlobalFilter postGlobalFilter() {
         return (exchange, chain) -> {
-            return chain.filter(exchange)
-                    .then(Mono.fromRunnable(() -> {
-                        log.info("POST GLOBAL FILTER!");
 
-                        ActivityLog activityLog = ActivityLog.builder()
-                                .responseBody(exchange.getResponse())
-                                .statusCode(exchange.getResponse().getStatusCode().toString())
-                                .build();
+            ServerHttpResponse originalResponse = exchange.getResponse();
 
-                        rabbitMQService.publishLog(activityLog, Utils.LogsActions.UPDATE.name());
+            // Log the initial response status
+            log.info("POST Filter and response status: {}", originalResponse.getStatusCode());
 
-                    }));
+            ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(originalResponse) {
+                @Override
+                public Mono<Void> writeWith(org.reactivestreams.Publisher<? extends DataBuffer> body) {
+                    log.info("Entering writeWith method");
+
+                    if (body == null) {
+                        log.warn("Response body is null");
+                        return super.writeWith(Mono.empty());
+                    }
+
+                    return Utils.captureResponseBody(body)
+                            .flatMap(responseBody -> {
+                                log.info("Captured Response Body: {}", responseBody);
+
+                                HttpStatus statusCode = exchange.getResponse().getStatusCode();
+
+                                // Build and send the ActivityLog to RabbitMQ
+                                ActivityLog activityLog = ActivityLog.builder()
+                                        .responseBody(responseBody)
+                                        .statusCode(statusCode != null ? statusCode.name() : "UNKNOWN")
+                                        .build();
+
+                                rabbitMQService.publishLog(activityLog, Utils.LogsActions.UPDATE.name());
+
+                                // Write the response body back to the client
+                                byte[] content = responseBody.getBytes(StandardCharsets.UTF_8);
+                                DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(content);
+                                return super.writeWith(Mono.just(buffer));
+                            })
+                            .onErrorResume(e -> {
+                                log.error("Error capturing response body", e);
+                                return super.writeWith(body);
+                            });
+                }
+
+                @Override
+                public Mono<Void> writeAndFlushWith(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends DataBuffer>> body) {
+                    log.info("Entering writeAndFlushWith method");
+
+                    if (body == null) {
+                        log.warn("Response body is null in writeAndFlushWith");
+                        return super.writeAndFlushWith(Mono.empty());
+                    }
+
+                    return Mono.from(body)
+                            .flatMapMany(dataBufferPublisher ->
+                                    Utils.captureResponseBody(dataBufferPublisher)
+                                            .flatMap(responseBody -> {
+                                                log.info("Captured Response Body in writeAndFlushWith: {}", responseBody);
+
+                                                HttpStatus statusCode = exchange.getResponse().getStatusCode();
+
+                                                // Build and send the ActivityLog to RabbitMQ
+                                                ActivityLog activityLog = ActivityLog.builder()
+                                                        .responseBody(responseBody)
+                                                        .statusCode(statusCode != null ? statusCode.name() : "UNKNOWN")
+                                                        .build();
+
+                                                rabbitMQService.publishLog(activityLog, Utils.LogsActions.UPDATE.name());
+
+                                                byte[] content = responseBody.getBytes(StandardCharsets.UTF_8);
+                                                DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(content);
+                                                return Mono.just(buffer);
+                                            })
+                                            .onErrorResume(e -> {
+                                                log.error("Error capturing response body in writeAndFlushWith", e);
+                                                return Mono.from(dataBufferPublisher);
+                                            })
+                            )
+                            .map(Mono::just)
+                            .as(super::writeAndFlushWith);
+                }
+            };
+
+            log.info("POST Filter ENDED");
+
+            return chain.filter(exchange.mutate().response(decoratedResponse).build())
+                    .doOnSuccess(aVoid -> log.info("Filter chain completed successfully"))
+                    .doOnError(error -> log.error("Error in filter chain", error));
         };
     }
 
@@ -120,26 +277,55 @@ public class GatewayConfig {
         };
     }
 
+    private ServerHttpResponseDecorator getDecoratedResponse(String path, ServerHttpResponse response,  DataBufferFactory dataBufferFactory) {
+        return new ServerHttpResponseDecorator(response) {
 
+            @Override
+            public Mono<Void> writeWith(final Publisher<? extends DataBuffer> body) {
 
-    private GatewayFilter APILogFilter(){
-        return (ServerWebExchange exchange, GatewayFilterChain chain) -> {
-            ActivityLog activityLog = ActivityLog.builder()
-                    .requestURI(exchange.getRequest().getURI().toString())
-                    .requestBody(exchange.getRequest().getBody())
-                    .responseBody(exchange.getResponse())
-                    .statusCode(exchange.getResponse().getStatusCode().toString())
-                    .username(exchange.getRequest().getHeaders().getFirst("loggedInUsername"))
-                    .build();
+                if (body instanceof Flux) {
 
-            log.info("SENDING ACTIVITY TO LOGGING SERVICE TO STORE IN DB {}", activityLog);
-//
-            rabbitMQService.publishLog(activityLog, Utils.LogsActions.CREATE.name());
+                    Flux<? extends DataBuffer> fluxBody = (Flux<? extends DataBuffer>) body;
 
-            return chain.filter(exchange);
+                    return super.writeWith(fluxBody.buffer().map(dataBuffers -> {
+
+                        DefaultDataBuffer joinedBuffers = new DefaultDataBufferFactory().join(dataBuffers);
+                        byte[] content = new byte[joinedBuffers.readableByteCount()];
+                        joinedBuffers.read(content);
+                        String responseBody = new String(content, StandardCharsets.UTF_8);//MODIFY RESPONSE and Return the Modified response
+                        log.info("response body: {}", responseBody);
+
+                        return dataBufferFactory.wrap(responseBody.getBytes());
+                    })).onErrorResume(err -> {
+
+                        log.error("error while decorating Response: {}",err.getMessage());
+                        return Mono.empty();
+                    });
+
+                }
+                return super.writeWith(body);
+            }
         };
-
     }
+
+//    private GatewayFilter APILogFilter(){
+//        return (ServerWebExchange exchange, GatewayFilterChain chain) -> {
+//            ActivityLog activityLog = ActivityLog.builder()
+//                    .requestURI(exchange.getRequest().getURI().toString())
+//                    .requestBody(exchange.getRequest().getBody())
+//                    .responseBody(exchange.getResponse())
+//                    .statusCode(exchange.getResponse().getStatusCode().toString())
+//                    .username(exchange.getRequest().getHeaders().getFirst("loggedInUsername"))
+//                    .build();
+//
+//            log.info("SENDING ACTIVITY TO LOGGING SERVICE TO STORE IN DB {}", activityLog);
+////
+//            rabbitMQService.publishLog(activityLog, Utils.LogsActions.CREATE.name());
+//
+//            return chain.filter(exchange);
+//        };
+//
+//    }
 
     private boolean hasRequiredRole(List<String> requiredRoles, List<String> userRoles) {
         return userRoles.stream().anyMatch(userRole ->
@@ -156,4 +342,5 @@ public class GatewayConfig {
         exchange.getResponse().getHeaders().add("Content-Type", "application/json");
         return exchange.getResponse().writeWith(Mono.just(buffer));
     }
+
 }
