@@ -6,6 +6,6 @@ import org.springframework.amqp.core.Message;
 
 public interface ActivityLogService {
 
-    public void StoreActivityLogToDB(LogRequest message);
+    public void StoreActivityLogToDB(LogRequest message, String action);
 
 }

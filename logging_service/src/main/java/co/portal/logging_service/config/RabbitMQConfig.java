@@ -1,6 +1,9 @@
 package co.portal.logging_service.config;
 
 import co.portal.logging_service.service.ActivityLogServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
@@ -29,7 +32,10 @@ public class RabbitMQConfig {
 
     @Bean
     MessageConverter messageConverter() {
-        return new Jackson2JsonMessageConverter();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 
     @Bean
@@ -38,6 +44,12 @@ public class RabbitMQConfig {
         rabbitTemplate.setMessageConverter(messageConverter());
         rabbitTemplate.setConnectionFactory(connectionFactory());
         return rabbitTemplate;
+    }
+
+    @Bean
+    public Queue queue()
+    {
+        return new Queue("db-queue", false);
     }
 
 

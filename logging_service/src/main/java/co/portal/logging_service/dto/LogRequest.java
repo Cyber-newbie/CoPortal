@@ -19,6 +19,16 @@ public class LogRequest implements Serializable {
 
     private LocalDate timestamp;
 
+    private String ipAddress;
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
     public LocalDate getTimestamp() {
         return timestamp;
     }
@@ -72,6 +82,7 @@ public class LogRequest implements Serializable {
                 ", responseBody=" + responseBody +
                 ", requestURI='" + requestURI + '\'' +
                 ", timestamp=" + timestamp +
+                ", ipAddress='" + ipAddress + '\'' +
                 '}';
     }
 

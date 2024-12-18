@@ -18,10 +18,10 @@ public class ActivityLog implements Serializable {
     private String statusCode;
 
     @JsonProperty
-    private Object requestBody;
+    private String requestBody;
 
     @JsonProperty
-    private Object responseBody;
+    private String responseBody;
 
     @JsonProperty
     private String requestURI;

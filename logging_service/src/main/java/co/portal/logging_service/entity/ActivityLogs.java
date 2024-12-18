@@ -43,6 +43,9 @@ public class ActivityLogs {
     @Column(nullable = false)
     private LocalDate timestamp;
 
+    @Column(name = "ip_address")
+    private String ipAddress;
+
 
 
 }

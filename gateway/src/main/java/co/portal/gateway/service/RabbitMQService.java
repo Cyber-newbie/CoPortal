@@ -28,20 +28,19 @@ public class RabbitMQService {
 
         try {
             log.info("SENDING PAYLOAD: {}", payload);
-            rabbitTemplate.convertAndSend("db-exchange", "db", payload);
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            String jsonPayload = objectMapper.writeValueAsString(payload);
-//            rabbitTemplate.convertAndSend("db-exchange", "db", jsonPayload, message -> {
-//                message.getMessageProperties().setContentType("application/json");
-//                message.getMessageProperties().getHeaders().put("action", action);
-//                return message;
-//            });
+
+//            rabbitTemplate.convertAndSend("db-exchange", "db", payload);
+            rabbitTemplate.convertAndSend("db-exchange", "db", payload, message -> {
+                message.getMessageProperties().setContentType("application/json");
+                message.getMessageProperties().getHeaders().put ("action", action);
+                return message;
+            });
 
 
 
             log.info("SENDING DATA TO LOGGING SERVICE: {}", payload);
         } catch (Exception e) {
-            log.info("Could not send message to queue {}", e.getMessage());
+            log.info("Could not send message to queue {}", e.getStackTrace());
         }
     }
 }
