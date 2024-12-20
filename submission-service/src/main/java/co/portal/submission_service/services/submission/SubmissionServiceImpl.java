@@ -4,6 +4,8 @@ import co.portal.submission_service.dto.submission.SubmissionRequest;
 import co.portal.submission_service.dto.user.UserDTO;
 import co.portal.submission_service.entity.Submission;
 import co.portal.submission_service.repository.SubmissionRepository;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +23,6 @@ import java.util.Optional;
 public class SubmissionServiceImpl  implements SubmissionService {
 
     private SubmissionRepository submissionRepository;
-    private RestTemplate restTemplate;
     private  EntityManager entityManager;
 
     @Value("${user.service.url}")
@@ -32,10 +33,8 @@ public class SubmissionServiceImpl  implements SubmissionService {
 
     @Autowired
     public SubmissionServiceImpl(
-                                 RestTemplate restTemplate,
                                  SubmissionRepository submissionRepository,
                                  EntityManager entityManager) {
-        this.restTemplate = restTemplate;
         this.submissionRepository = submissionRepository;
         this.entityManager = entityManager;
     }
@@ -96,8 +95,10 @@ public class SubmissionServiceImpl  implements SubmissionService {
 //
     @Override
     @Transactional
-    public Submission evaluateQuizSubmit(SubmissionRequest request, String quizId) throws Exception {
+    public Submission evaluateQuizSubmit(SubmissionRequest request, String quizId, String username) throws Exception {
         // Fetch the quiz using the quiz ID
+        HttpResponse response = Unirest.get(quizServiceUrl)
+
         Quiz quiz = quizService.getQuiz(Integer.parseInt(quizId));
 
         // Calculate the total score secured by the user

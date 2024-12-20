@@ -17,6 +17,7 @@ public interface QuizService {
 
     public List<Quiz> getAllQuizes() throws Exception;
 
+    public void deactivateOutdatedQuizes();
 
     public Quiz updateQuiz(int quizId, QuizRequest request) throws Exception;
 

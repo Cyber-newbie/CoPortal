@@ -6,7 +6,9 @@ import co.portal.quiz_service.dto.QuizRequest;
 import co.portal.quiz_service.dto.QuizResponse;
 import co.portal.quiz_service.entity.Quiz;
 import co.portal.quiz_service.service.QuizService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/quiz")
+@Slf4j
 public class QuizController {
 
     private QuizService quizService;
@@ -26,11 +29,11 @@ public class QuizController {
     }
 
     @PostMapping("/admin/create")
-    public ResponseEntity<QuizResponse> createQuiz(@Valid  @RequestBody QuizRequest quiz,
+    public ResponseEntity<QuizResponse<Quiz>> createQuiz(@Valid  @RequestBody QuizRequest quiz,
                                                    @RequestHeader("loggedInUsername") String username ) throws Exception {
 
         Quiz createdQuiz = this.quizService.createQuiz(quiz, username);
-        QuizResponse quizResponse = new QuizResponse();
+        QuizResponse<Quiz> quizResponse = new QuizResponse<>();
 
         quizResponse.setStatus("201");
         quizResponse.setMessage("Quiz created successfully");
@@ -46,6 +49,21 @@ public class QuizController {
         quizResponse.setQuiz(quizList);
         quizResponse.setMessage("Quiz list retrieved successfully");
         return ResponseEntity.status(HttpStatus.OK).body(quizResponse);
+    }
+
+    @GetMapping("/user/{quizId}")
+    public ResponseEntity<QuizResponse<Quiz>> getQuizById(@PathVariable("quizId") Integer quizId) throws Exception {
+
+        log.info("GET QUIZ BY ID");
+
+        Quiz quiz = quizService.getQuiz(quizId);
+
+        QuizResponse<Quiz> response = new QuizResponse<>();
+        response.setQuiz(quiz);
+        response.setMessage("Quiz fetched by id: " + quizId);
+        response.setStatus("200");
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
 //    @GetMapping("/{quizId}")

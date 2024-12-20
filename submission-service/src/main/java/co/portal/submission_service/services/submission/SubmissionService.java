@@ -16,6 +16,6 @@ public interface SubmissionService {
 
     List<Submission> getUserSubmissions(String username);
 
-    Submission evaluateQuizSubmit(SubmissionRequest request, String quizId) throws Exception;
+    Submission evaluateQuizSubmit(SubmissionRequest request, String quizId, String username) throws Exception;
 
 }

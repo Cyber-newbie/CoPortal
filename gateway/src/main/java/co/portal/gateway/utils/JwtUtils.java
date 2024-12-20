@@ -55,9 +55,6 @@ public class JwtUtils {
 
     public boolean validateTokenSignature(String token) {
         try {
-            // Debugging: log the token to check its format
-            System.out.println("Received JWT Token: " + token);
-
             // Parsing the token
             Jwts.parser()
                     .setSigningKey(SECRET_KEY)

@@ -25,11 +25,12 @@ public class SubmissionController {
 
     @PostMapping("/{quizId}")
     public ResponseEntity<SubmissionResponse<Submission>> submit(@PathVariable("quizId") String quizId,
-                                                                 @Valid @RequestBody SubmissionRequest request)
+                                                                 @Valid @RequestBody SubmissionRequest request,
+                                                                 @RequestHeader("loggedInUsername") String username )
             throws Exception {
 
 
-        Submission submission = submissionService.evaluateQuizSubmit(request, quizId);
+        Submission submission = submissionService.evaluateQuizSubmit(request, quizId, username);
 
         SubmissionResponse<Submission> response = new SubmissionResponse<>();
         response.setStatus("201");

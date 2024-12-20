@@ -15,11 +15,14 @@ import co.portal.quiz_service.utils.QuizUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -101,13 +104,25 @@ public class QuizServiceImpl implements QuizService {
 //                new QuizNotFoundException("Quiz not found"));
 //
 //        return this.quizRepository.getQuizQuestions(quizId);
-//    }
 
+//    }
     @Override
     public List<Quiz> getAllQuizes() throws Exception {
         return this.quizRepository.findAll();
     }
 
+
+    @Override
+    @Scheduled(cron = "0 0 0 * * *")
+    @Transactional
+    public void deactivateOutdatedQuizes() {
+
+        log.info("SCHEDULER RUNNING TO DEACTIVATE OUTDATED QUIZ");
+
+        LocalDateTime currentDate = LocalDateTime.now();
+        int quizes = quizRepository.findOutdatedQuizes(currentDate);
+        log.info("Quizes: {}", quizes);
+    }
 
     @Override
     public Quiz updateQuiz(int quizId, QuizRequest request) throws Exception {

@@ -4,6 +4,7 @@ import co.portal.user_service.dto.user.*;
 import co.portal.user_service.entity.User;
 import co.portal.user_service.service.user.UserService;
 import co.portal.user_service.utils.mapper.UserMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
+@Slf4j
 public class UserController {
 
     private UserService userService;
@@ -39,6 +41,8 @@ public class UserController {
     public ResponseEntity<UserResponse> assignRoleToUser(@PathVariable("userId") Integer userId,
                                             @Valid @RequestBody RoleRequest request) throws Exception {
 
+        log.info("assigning role ");
+
         User user = this.userService.assignRoleToUser(userId, request.getRoles());
         UserResponse response = this.userMapper.toDto(user, "204", "User's roles updated");
         return ResponseEntity.status(204).body(response);
@@ -49,11 +53,11 @@ public class UserController {
 
         try {
             User user = this.userService.getUserByName(username);
-//            UserResponse userResponse = new UserResponse();
-//            userResponse.setUser(user);
-//            userResponse.setStatus("200");
-//            userResponse.setMessage("User fetched successfully");
+
+            log.info("get user by username: {}", username);
+
             return ResponseEntity.ok(user);
+
         } catch (Exception e) {
              ErrorResponse errorResponse = new ErrorResponse("500", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);

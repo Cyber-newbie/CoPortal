@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class ActivityLog implements Serializable {
 
     @JsonProperty
@@ -16,6 +17,9 @@ public class ActivityLog implements Serializable {
 
     @JsonProperty
     private String statusCode;
+
+    @JsonProperty
+    private String ipAddress;
 
     @JsonProperty
     private String requestBody;

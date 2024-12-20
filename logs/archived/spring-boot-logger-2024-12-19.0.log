@@ -1,0 +1,103 @@
+2024-12-19 17:47:43,495 INFO  [background-preinit] my-project.Version: HV000001: Hibernate Validator 6.2.5.Final
+2024-12-19 17:47:43,573 INFO  [main] my-project.GatewayApplication: Starting GatewayApplication using Java 1.8.0_432 on HASAN-HAIDER with PID 14644 (D:\co-quiz\gateway\target\classes started by HasanHaider in D:\co-quiz\gateway)
+2024-12-19 17:47:43,573 INFO  [main] my-project.GatewayApplication: No active profile set, falling back to 1 default profile: "default"
+2024-12-19 17:47:48,840 INFO  [main] my-project.GenericScope: BeanFactory id=334ccd63-eb51-3ee2-9704-dd815a95578a
+2024-12-19 17:47:49,374 INFO  [main] my-project.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-12-19 17:47:49,406 INFO  [main] my-project.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-12-19 17:47:49,406 INFO  [main] my-project.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [After]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Before]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Between]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Cookie]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Header]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Host]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Method]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Path]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Query]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [ReadBody]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [RemoteAddr]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Weight]
+2024-12-19 17:47:54,802 INFO  [main] my-project.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2024-12-19 17:48:01,064 INFO  [main] my-project.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-12-19 17:48:01,644 INFO  [main] my-project.DiscoveryClientOptionalArgsConfiguration: Eureka HTTP Client uses RestTemplate.
+2024-12-19 17:48:01,942 WARN  [main] my-project.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger: Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2024-12-19 17:48:01,989 INFO  [main] my-project.InstanceInfoFactory: Setting initial instance status as: STARTING
+2024-12-19 17:48:02,131 INFO  [main] my-project.DiscoveryClient: Initializing Eureka in region us-east-1
+2024-12-19 17:48:02,147 INFO  [main] my-project.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2024-12-19 17:48:02,209 INFO  [main] my-project.DiscoveryClient: Disable delta property : false
+2024-12-19 17:48:02,209 INFO  [main] my-project.DiscoveryClient: Single vip registry refresh property : null
+2024-12-19 17:48:02,209 INFO  [main] my-project.DiscoveryClient: Force full registry fetch : false
+2024-12-19 17:48:02,209 INFO  [main] my-project.DiscoveryClient: Application is null : false
+2024-12-19 17:48:02,209 INFO  [main] my-project.DiscoveryClient: Registered Applications size is zero : true
+2024-12-19 17:48:02,209 INFO  [main] my-project.DiscoveryClient: Application version is -1: true
+2024-12-19 17:48:02,209 INFO  [main] my-project.DiscoveryClient: Getting all instance registry info from the eureka server
+2024-12-19 17:48:03,028 INFO  [main] my-project.DiscoveryClient: The response status is 200
+2024-12-19 17:48:03,028 INFO  [main] my-project.DiscoveryClient: Starting heartbeat executor: renew interval is: 30
+2024-12-19 17:48:03,028 INFO  [main] my-project.InstanceInfoReplicator: InstanceInfoReplicator onDemand update allowed rate per min is 4
+2024-12-19 17:48:03,044 INFO  [main] my-project.DiscoveryClient: Discovery Client initialized at timestamp 1734612483043 with initial instances count: 3
+2024-12-19 17:48:03,046 INFO  [main] my-project.EurekaServiceRegistry: Registering application GATEWAY with eureka with status UP
+2024-12-19 17:48:03,046 INFO  [main] my-project.DiscoveryClient: Saw local status change event StatusChangeEvent [timestamp=1734612483046, current=UP, previous=STARTING]
+2024-12-19 17:48:03,046 INFO  [DiscoveryClient-InstanceInfoReplicator-0] my-project.DiscoveryClient: DiscoveryClient_GATEWAY/host.docker.internal:gateway:8080: registering service...
+2024-12-19 17:48:03,137 INFO  [DiscoveryClient-InstanceInfoReplicator-0] my-project.DiscoveryClient: DiscoveryClient_GATEWAY/host.docker.internal:gateway:8080 - registration status: 204
+2024-12-19 17:48:04,115 INFO  [main] my-project.NettyWebServer: Netty started on port 8080
+2024-12-19 17:48:04,115 INFO  [main] my-project.EurekaAutoServiceRegistration: Updating port to 8080
+2024-12-19 17:48:06,357 INFO  [main] my-project.GatewayApplication: Started GatewayApplication in 26.095 seconds (JVM running for 27.989)
+2024-12-19 17:48:17,944 INFO  [SpringApplicationShutdownHook] my-project.EurekaServiceRegistry: Unregistering application GATEWAY with eureka with status DOWN
+2024-12-19 17:48:17,944 INFO  [SpringApplicationShutdownHook] my-project.DiscoveryClient: Saw local status change event StatusChangeEvent [timestamp=1734612497944, current=DOWN, previous=UP]
+2024-12-19 17:48:17,944 INFO  [DiscoveryClient-InstanceInfoReplicator-0] my-project.DiscoveryClient: DiscoveryClient_GATEWAY/host.docker.internal:gateway:8080: registering service...
+2024-12-19 17:48:17,960 INFO  [DiscoveryClient-InstanceInfoReplicator-0] my-project.DiscoveryClient: DiscoveryClient_GATEWAY/host.docker.internal:gateway:8080 - registration status: 204
+2024-12-19 17:48:20,097 INFO  [SpringApplicationShutdownHook] my-project.DiscoveryClient: Shutting down DiscoveryClient ...
+2024-12-19 17:48:23,112 INFO  [SpringApplicationShutdownHook] my-project.DiscoveryClient: Unregistering ...
+2024-12-19 17:48:23,127 INFO  [SpringApplicationShutdownHook] my-project.DiscoveryClient: DiscoveryClient_GATEWAY/host.docker.internal:gateway:8080 - deregister  status: 200
+2024-12-19 17:48:23,127 INFO  [SpringApplicationShutdownHook] my-project.DiscoveryClient: Completed shut down of DiscoveryClient
+2024-12-19 17:48:30,960 INFO  [background-preinit] gateway.Version: HV000001: Hibernate Validator 6.2.5.Final
+2024-12-19 17:48:31,015 INFO  [main] gateway.GatewayApplication: Starting GatewayApplication using Java 1.8.0_432 on HASAN-HAIDER with PID 5284 (D:\co-quiz\gateway\target\classes started by HasanHaider in D:\co-quiz\gateway)
+2024-12-19 17:48:31,026 INFO  [main] gateway.GatewayApplication: No active profile set, falling back to 1 default profile: "default"
+2024-12-19 17:48:33,351 INFO  [main] gateway.GenericScope: BeanFactory id=334ccd63-eb51-3ee2-9704-dd815a95578a
+2024-12-19 17:48:33,524 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-12-19 17:48:33,524 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-12-19 17:48:33,524 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-12-19 17:48:37,967 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [After]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Before]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Between]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Cookie]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Header]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Host]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Method]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Path]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Query]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [ReadBody]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [RemoteAddr]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Weight]
+2024-12-19 17:48:37,982 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2024-12-19 17:48:42,012 INFO  [main] gateway.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-12-19 17:48:42,564 INFO  [main] gateway.DiscoveryClientOptionalArgsConfiguration: Eureka HTTP Client uses RestTemplate.
+2024-12-19 17:48:42,768 WARN  [main] gateway.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger: Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2024-12-19 17:48:42,847 INFO  [main] gateway.InstanceInfoFactory: Setting initial instance status as: STARTING
+2024-12-19 17:48:42,989 INFO  [main] gateway.DiscoveryClient: Initializing Eureka in region us-east-1
+2024-12-19 17:48:43,004 INFO  [main] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2024-12-19 17:48:43,052 INFO  [main] gateway.DiscoveryClient: Disable delta property : false
+2024-12-19 17:48:43,052 INFO  [main] gateway.DiscoveryClient: Single vip registry refresh property : null
+2024-12-19 17:48:43,052 INFO  [main] gateway.DiscoveryClient: Force full registry fetch : false
+2024-12-19 17:48:43,052 INFO  [main] gateway.DiscoveryClient: Application is null : false
+2024-12-19 17:48:43,052 INFO  [main] gateway.DiscoveryClient: Registered Applications size is zero : true
+2024-12-19 17:48:43,052 INFO  [main] gateway.DiscoveryClient: Application version is -1: true
+2024-12-19 17:48:43,052 INFO  [main] gateway.DiscoveryClient: Getting all instance registry info from the eureka server
+2024-12-19 17:48:43,950 INFO  [main] gateway.DiscoveryClient: The response status is 200
+2024-12-19 17:48:43,966 INFO  [main] gateway.DiscoveryClient: Starting heartbeat executor: renew interval is: 30
+2024-12-19 17:48:43,966 INFO  [main] gateway.InstanceInfoReplicator: InstanceInfoReplicator onDemand update allowed rate per min is 4
+2024-12-19 17:48:43,981 INFO  [main] gateway.DiscoveryClient: Discovery Client initialized at timestamp 1734612523981 with initial instances count: 4
+2024-12-19 17:48:43,981 INFO  [main] gateway.EurekaServiceRegistry: Registering application GATEWAY with eureka with status UP
+2024-12-19 17:48:43,981 INFO  [main] gateway.DiscoveryClient: Saw local status change event StatusChangeEvent [timestamp=1734612523981, current=UP, previous=STARTING]
+2024-12-19 17:48:43,997 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/host.docker.internal:gateway:8080: registering service...
+2024-12-19 17:48:44,109 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/host.docker.internal:gateway:8080 - registration status: 204
+2024-12-19 17:48:45,318 INFO  [main] gateway.NettyWebServer: Netty started on port 8080
+2024-12-19 17:48:45,318 INFO  [main] gateway.EurekaAutoServiceRegistration: Updating port to 8080
+2024-12-19 17:48:47,593 INFO  [main] gateway.GatewayApplication: Started GatewayApplication in 19.264 seconds (JVM running for 21.216)
+2024-12-19 17:53:43,076 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2024-12-19 18:40:00,168 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2024-12-19 18:45:00,171 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2024-12-19 18:50:00,186 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2024-12-19 18:55:00,196 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration

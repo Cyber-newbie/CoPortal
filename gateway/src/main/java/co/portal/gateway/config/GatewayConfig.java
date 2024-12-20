@@ -6,6 +6,7 @@ import co.portal.gateway.utils.JwtUtils;
 import co.portal.gateway.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Publisher;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -39,6 +40,9 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @Slf4j
 public class GatewayConfig {
 
+    @Value("${allowedIPs.admin}")
+    private List<String> allowedIPs;
+
     @Autowired
     private JwtUtils jwtUtils;
 
@@ -51,16 +55,17 @@ public class GatewayConfig {
                 // Route for quiz-service
                 .route("quiz-service", r -> r.path("/quiz/admin/**")
 //                                .filters(f -> f.filters(createJwtAuthorizationFilter(), APILogFilter()))
-                        .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Collections.singletonList("ADMIN"))))
+                        .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("ADMIN", "INSTRUCTOR"))))
                         .uri("lb://QUIZ-SERVICE")
                 )
-                .route("quiz-service", r -> r.path("/quiz/**")
+                .route("quiz-service", r -> r.path("/quiz/user/**")
                         .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("USER"))))
                         .uri("lb://QUIZ-SERVICE")
                 )
                 // Route for question-service
                 .route("question-service", r -> r.path("/question/**")
-                        .filters(f -> f.filter(createJwtAuthorizationFilter("question-service", Arrays.asList("ADMIN", "INSTRUCTOR"))))
+                        .filters(f -> f.filter(
+                                createJwtAuthorizationFilter("question-service", Arrays.asList("ADMIN", "INSTRUCTOR"))))
                         .uri("lb://QUESTION-SERVICE")
                 )
                 // Route for submission-service
@@ -69,7 +74,8 @@ public class GatewayConfig {
                         .uri("lb://SUBMISSION-SERVICE")
                 )
                 .route("user-service", r -> r.path("/auth/admin/**")
-                        .filters(f -> f.filter(createJwtAuthorizationFilter("user-service", Arrays.asList("ADMIN"))))
+                        .filters(f -> f.filters(createJwtAuthorizationFilter("user-service", Arrays.asList("ADMIN")),
+                                adminIPAddressFilter()))
                         .uri("lb://USER-SERVICE")
                 )
                 // Route for user-service
@@ -79,12 +85,39 @@ public class GatewayConfig {
                 .build();
     }
 
-    private GatewayFilter createJwtAuthorizationFilter(String routeId, List<String> roles) {
+    private GatewayFilter adminIPAddressFilter(){
+
         return (exchange, chain) -> {
-            String token = Objects.requireNonNull(exchange.getRequest().
-                    getHeaders().getFirst("Authorization")).substring(7);
-            if (token != null) {
-                if (jwtUtils.validateToken(token)) {
+                log.info("ADMIN IP ADDRESS GATEWAY FILTER {}", allowedIPs);
+                String clientIPaddress = exchange.getRequest().getRemoteAddress().getAddress().getHostAddress().toString();
+
+                log.info("client ip : {}", clientIPaddress);
+                if(allowedIPs.contains(clientIPaddress)){
+                    return chain.filter(exchange);
+                } else {
+                    exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                }
+                return exchange.getResponse().setComplete();
+        };
+    }
+
+    private GatewayFilter createJwtAuthorizationFilter(String routeId, List<String> roles) {
+            log.info("JWT filter invoked");
+        return (exchange, chain) -> {
+                String token;
+
+            String authHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
+
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                log.warn("Authorization header missing or invalid");
+                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                 return exchange.getResponse().setComplete();
+            }
+
+            token = authHeader.substring(7);
+
+
+            if (jwtUtils.validateToken(token)) {
                     String username = jwtUtils.extractUsername(token);
                     List<String> userRoles = jwtUtils.extractRoles(token);
 
@@ -95,14 +128,14 @@ public class GatewayConfig {
                     if (hasRequiredRole(roles, userRoles)) {
                         return chain.filter(exchange);
                     } else {
+                        log.info("required roles {}", roles);
+                        log.info("user roles {}", userRoles);
                         exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);  // Forbidden if roles do not match
                     }
                 } else {
                     respondWithMessage(exchange, HttpStatus.BAD_REQUEST, "Invalid or expired token");  // Unauthorized if token is invalid
                 }
-            } else {
-                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);  // Unauthorized if no token is present
-            }
+
 
             return exchange.getResponse().setComplete();  // End the request-response cycle
         };
