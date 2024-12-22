@@ -1,9 +1,7 @@
 package co.portal.quiz_service.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,9 +9,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@Builder
 public class Category {
 
     @Id
@@ -30,10 +27,4 @@ public class Category {
     @JsonIgnore
     private List<Quiz> quiz = new ArrayList<>();
 
-
-
-    public Category(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
 }

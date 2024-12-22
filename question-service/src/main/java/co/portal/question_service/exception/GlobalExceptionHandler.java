@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     // Handle QuestionSaveException
     @ExceptionHandler(QuestionSaveException.class)
     public ResponseEntity<Map<String, Object>> handleQuestionSaveException(QuestionSaveException ex) {
-        Map<String, Object> errorResponse = new HashMap<>();
+        Map<String, Object> errorResponse = new HashMap();
         errorResponse.put("timestamp", LocalDateTime.now());
         errorResponse.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
         errorResponse.put("error", "Internal Server Error");
