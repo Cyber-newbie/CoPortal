@@ -1052,3 +1052,4 @@ java.util.concurrent.TimeoutException: null
 2024-12-22 23:28:25,985 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
 2024-12-22 23:33:26,001 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
 2024-12-22 23:38:26,004 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2024-12-22 23:43:26,014 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
