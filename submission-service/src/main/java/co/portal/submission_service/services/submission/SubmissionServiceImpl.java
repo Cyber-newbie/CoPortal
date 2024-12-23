@@ -1,11 +1,15 @@
 package co.portal.submission_service.services.submission;
 
+import co.portal.submission_service.dto.quiz.QuizDTO;
 import co.portal.submission_service.dto.submission.SubmissionRequest;
 import co.portal.submission_service.dto.user.UserDTO;
 import co.portal.submission_service.entity.Submission;
 import co.portal.submission_service.repository.SubmissionRepository;
+import co.portal.submission_service.utils.Utils;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +28,7 @@ public class SubmissionServiceImpl  implements SubmissionService {
 
     private SubmissionRepository submissionRepository;
     private  EntityManager entityManager;
+    private Utils utils;
 
     @Value("${user.service.url}")
     private String userServiceUrl;
@@ -34,38 +39,46 @@ public class SubmissionServiceImpl  implements SubmissionService {
     @Autowired
     public SubmissionServiceImpl(
                                  SubmissionRepository submissionRepository,
-                                 EntityManager entityManager) {
+                                 EntityManager entityManager,
+                                 Utils utils) {
         this.submissionRepository = submissionRepository;
         this.entityManager = entityManager;
+        this.utils = utils;
     }
 
     public UserDTO getLoggedInUser(String username) {
         log.info("USER SERVICE URL: {}", userServiceUrl + "/" + username);
         try {
-            UserDTO user = restTemplate.getForObject(userServiceUrl + "/" + username , UserDTO.class);
+            HttpResponse<UserDTO> user = Unirest.get(userServiceUrl + "/" + username).asObject(UserDTO.class);
             log.info("LOGGED IN USER {}" ,  user);
-            return user;
+            return user.getBody();
         } catch (RestClientException e) {
+            throw new RuntimeException(e);
+        } catch (UnirestException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
     @Transactional
-    public Submission createSubmission(SubmissionRequest request, Quiz quiz, Integer securedScore) throws Exception {
-        User user = getLoggedInUser();
+    public Submission createSubmission(SubmissionRequest request,
+                                       QuizDTO quiz,
+                                       Integer securedScore,
+                                       String username) throws Exception {
+        UserDTO user = getLoggedInUser(username);
         Integer quizId = quiz.getId();
 
         Optional<Submission> existingSubmission = checkUserSubmission(String.valueOf(quizId), user.getId());
 
-        if (!quizUtils.checkQuizDeadline(quiz.getDeadline(), request.getSubmissionTime())) {
+        if (!utils.checkQuizDeadline(quiz.getDeadline(), request.getSubmissionTime())) {
             throw new Exception("You have exceeded the time limit");
         }
 
         Submission submission = existingSubmission.orElseGet(() -> {
             Submission newSubmission = new Submission();
-            newSubmission.setUser(user);
-            newSubmission.setQuiz(quiz);
+            newSubmission.setUserId(user.getId());
+            newSubmission.setQuizId(quiz.getId());
+
             return newSubmission;
         });
 
@@ -96,16 +109,16 @@ public class SubmissionServiceImpl  implements SubmissionService {
     @Override
     @Transactional
     public Submission evaluateQuizSubmit(SubmissionRequest request, String quizId, String username) throws Exception {
-        // Fetch the quiz using the quiz ID
-        HttpResponse response = Unirest.get(quizServiceUrl)
 
-        Quiz quiz = quizService.getQuiz(Integer.parseInt(quizId));
+
+        // Fetch the quiz using the quiz ID
+        HttpResponse<QuizDTO> quiz = Unirest.get(quizServiceUrl + "/user/" + quizId).asObject(QuizDTO.class);
 
         // Calculate the total score secured by the user
         Integer totalSecuredNumber = questionService.checkQuestionAgainstUserAnswers(quiz, request.getUserAnswers());
 
         // Create or update the submission with the score
-        return createSubmission(request, quiz, totalSecuredNumber);
+        return createSubmission(request, quiz, totalSecuredNumber, username);
     }
 
 }

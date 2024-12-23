@@ -10,8 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Response {
+public class Response<T> {
 
-    private List<Question> questions;
+    private T data;
 
 }

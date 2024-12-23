@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class QuizResponse <T>{
+public class Response<T>{
 
     private String status;
 
     private String message;
 
-    private T quiz;
+    private T data;
 }

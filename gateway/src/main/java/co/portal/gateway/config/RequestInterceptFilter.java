@@ -14,6 +14,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -49,11 +50,13 @@ public class RequestInterceptFilter implements GlobalFilter, Ordered {
         AtomicReference<ServerHttpRequest> decoratedRequest = new AtomicReference<>(originalRequest);
         ActivityLog activityLog = new ActivityLog();
         RequestInfo requestInfo = utils.getRequestInfo(originalRequest);
+        HttpStatus status = originalResponse.getStatusCode();
 
         DataBufferFactory bufferFactory = originalResponse.bufferFactory();
-
+//        requestInfo.getMethod().matches("GET")
         //not capturing request if it's a GET
         if(requestInfo.getMethod().matches("GET")){
+
             ServerHttpResponseDecorator decoratedResponse = responseDecorator(originalResponse, originalRequest, null);
 
             // Proceed with the chain using the decorated request and response
@@ -61,17 +64,19 @@ public class RequestInterceptFilter implements GlobalFilter, Ordered {
                     .request(decoratedRequest.get())
                     .response(decoratedResponse)
                     .build());
-        } else {
+        }  else {
 
         // Capture and log the request body
         return DataBufferUtils.join(originalRequest.getBody())
                 .flatMap(requestDataBuffer -> {
                     String requestBody = StandardCharsets.UTF_8.decode(requestDataBuffer.asByteBuffer()).toString().trim();
-                    log.info("Incoming Request: [{}] {} with Body: {}", requestInfo.getMethod(), requestInfo.getRequestURI(), requestBody);
+                    log.info("LAST BLOCK Incoming Request: [{}] {} status: {} with Body: {}", requestInfo.getMethod(), requestInfo.getRequestURI(), status, requestBody);
 
                     // Create and send ActivityLog for request
 
                     activityLog.setRequestBody(requestBody);
+
+
 //                    rabbitMQService.publishLog(activityLog, "request");
 
                     // Recreate the DataBuffer for the request body
@@ -101,20 +106,37 @@ public class RequestInterceptFilter implements GlobalFilter, Ordered {
     //decorates response body to capture it and also receives string request body and log to publish via rabbitmq
     private ServerHttpResponseDecorator responseDecorator(ServerHttpResponse originalResponse,
                                                           ServerHttpRequest originalRequest,
-                                                          String requestBody ){
+                                                          String requestBody) {
         return new ServerHttpResponseDecorator(originalResponse) {
             final DataBufferFactory bufferFactory = originalResponse.bufferFactory();
+
             @Override
             public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
+                // Check the status code to handle cases with or without response body
+                HttpStatus status = originalResponse.getStatusCode();
+
+
+                if (utils.hasNoResponseBody(status)) {
+                    log.info("Outgoing Response: Status Code [{}], No Response Body", status);
+
+                    // Create and send ActivityLog for responses without body
+                    ActivityLog activityLog = utils.prepareActivityLog(originalRequest, originalResponse, null, requestBody);
+                    rabbitMQService.publishLog(activityLog, "CREATE");
+
+                    // Proceed without modifying the body
+                    return super.writeWith(body);
+                }
+
+                // Handle responses with a body
                 return super.writeWith(Flux.from(body).flatMap(responseDataBuffer -> {
                     String responseBody = StandardCharsets.UTF_8
                             .decode(responseDataBuffer.asByteBuffer())
                             .toString().trim();
-                    log.info("Outgoing Response: Status Code [{}], Body: {}", originalResponse.getStatusCode(), responseBody);
+
+                    log.info("Outgoing Response: Status Code [{}], Body: {}", status, responseBody);
 
                     // Create and send ActivityLog for response
                     ActivityLog activityLog = utils.prepareActivityLog(originalRequest, originalResponse, responseBody, requestBody);
-
                     rabbitMQService.publishLog(activityLog, "CREATE");
 
                     // Recreate the DataBuffer for the response body
@@ -124,55 +146,6 @@ public class RequestInterceptFilter implements GlobalFilter, Ordered {
             }
         };
     }
-
-//    @Override
-//    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-//
-//        ServerHttpRequest originalRequest =  exchange.getRequest();
-//        RequestInfo requestInfo = utils.getRequestInfo(originalRequest);
-//        ActivityLog activityLog = new ActivityLog();
-//
-//        // Create and send the ActivityLog to the logging service
-//
-////        rabbitMQService.publishLog(activityLog, "CREATE");
-//
-//        if (requestInfo.getMethod().equals(HttpMethod.POST.name()) || requestInfo.getMethod().equals(HttpMethod.PUT.name()) || requestInfo.getMethod().equals(HttpMethod.PATCH.name())) {
-//            return DataBufferUtils.join(originalRequest.getBody())
-//                    .flatMap(dataBuffer -> {
-//                        // Convert DataBuffer to String
-//                        String requestBody = StandardCharsets.UTF_8.decode(dataBuffer.asByteBuffer()).toString().trim();
-//                        log.info("Incoming Request: [{}] {} from IP: {} with body: {}", requestInfo.getMethod(), requestInfo.getRequestURI(), requestInfo.getClientIp(), requestBody);
-//
-//                        activityLog.setRequestBody(requestBody);
-//                        activityLog.setTimestamp(LocalDate.now());
-//                        activityLog.setIpAddress(requestInfo.getClientIp());
-//                        activityLog.setRequestURI(requestInfo.getRequestURI());
-//
-////                        rabbitMQService.publishLog(activityLog, "CREATE");
-//                        // Rewind the DataBuffer so it can be read again
-//                        DataBuffer newDataBuffer = dataBuffer.factory().wrap(dataBuffer.asByteBuffer());
-//
-//                        // Create a decorated request with the cached body
-//                        ServerHttpRequest decoratedRequest = new ServerHttpRequestDecorator(originalRequest) {
-//                            @Override
-//                            public Flux<DataBuffer> getBody() {
-//                                return Flux.just(newDataBuffer);
-//                            }
-//                        };
-//
-//                        // Proceed with the chain using the new request
-//                        return chain.filter(exchange.mutate().request(decoratedRequest).build()).then(
-//                                Mono.fromRunnable(() -> logResponse(exchange, activityLog))
-//                        );
-//                    });
-//        } else {
-//            log.info("Incoming Request: [{}] {}", requestInfo.getMethod(), requestInfo.getRequestURI());
-//            return chain.filter(exchange).then(
-//                    Mono.fromRunnable(() -> logResponse(exchange, activityLog))
-//            );
-//        }
-//
-//    }
 
 
     private void logResponse(ServerWebExchange exchange, ActivityLog activityLog){

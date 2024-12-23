@@ -25,7 +25,7 @@ public class CategoryServiceImpl implements  CategoryService{
     @Override
     public void createCategory(CategoryDTO request) throws Exception {
 
-         Optional.of(categoryRepository.findByTitle(request.getTitle()))
+         Optional.ofNullable(categoryRepository.findByTitle(request.getTitle()))
                  .ifPresent((existingCategory) -> {
                      throw new CategoryAlreadyExists("Category already exists " + request.getTitle());
                  });

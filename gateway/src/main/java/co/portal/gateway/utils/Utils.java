@@ -7,20 +7,55 @@ import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
 public class Utils {
+    private static final HttpStatus[] noResponseBodyStatusCodes = {
+            HttpStatus.CONTINUE,
+            HttpStatus.SWITCHING_PROTOCOLS,
+            HttpStatus.PROCESSING,
+            HttpStatus.TOO_EARLY,
+            HttpStatus.CREATED,
+            HttpStatus.NO_CONTENT,
+            HttpStatus.RESET_CONTENT,
+            HttpStatus.NOT_MODIFIED
+    };
+    private final HttpStatus[] responseBodyStatusCode = {
+            HttpStatus.OK,
+            HttpStatus.ACCEPTED,
+            HttpStatus.PARTIAL_CONTENT,
+            HttpStatus.BAD_REQUEST,
+            HttpStatus.UNAUTHORIZED,
+            HttpStatus.FORBIDDEN,
+            HttpStatus.NOT_FOUND,
+            HttpStatus.CONFLICT,
+            HttpStatus.UNPROCESSABLE_ENTITY,
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            HttpStatus.NOT_IMPLEMENTED,
+            HttpStatus.BAD_GATEWAY,
+            HttpStatus.SERVICE_UNAVAILABLE,
+            HttpStatus.GATEWAY_TIMEOUT
+    };
+
+    public Boolean containsResponseBody(HttpStatus status) {
+        return Arrays.asList(responseBodyStatusCode).contains(status);
+    }
+
+    public Boolean hasNoResponseBody(HttpStatus status) {
+        return Arrays.asList(noResponseBodyStatusCodes).contains(status);
+    }
 
     public enum LogsActions {
 
@@ -28,6 +63,8 @@ public class Utils {
         UPDATE,
 
     }
+
+
 
     public ActivityLog getActivityLog(String responseBody, String statusCode){
         return ActivityLog.builder()

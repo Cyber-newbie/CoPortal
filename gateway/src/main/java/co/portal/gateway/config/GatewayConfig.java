@@ -58,14 +58,23 @@ public class GatewayConfig {
                         .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("ADMIN", "INSTRUCTOR"))))
                         .uri("lb://QUIZ-SERVICE")
                 )
+                .route("quiz-service", r -> r.path("/category/admin/**")
+                                .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("ADMIN"))))
+                                .uri("lb://QUIZ-SERVICE")
+                )
                 .route("quiz-service", r -> r.path("/quiz/user/**")
                         .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("USER"))))
                         .uri("lb://QUIZ-SERVICE")
                 )
                 // Route for question-service
-                .route("question-service", r -> r.path("/question/**")
+                .route("question-service", r -> r.path("/question/admin/**")
                         .filters(f -> f.filter(
                                 createJwtAuthorizationFilter("question-service", Arrays.asList("ADMIN", "INSTRUCTOR"))))
+                        .uri("lb://QUESTION-SERVICE")
+                )
+                .route("question-service", r -> r.path("/question/**")
+                        .filters(f -> f.filter(
+                                createJwtAuthorizationFilter("question-service", Arrays.asList("USER"))))
                         .uri("lb://QUESTION-SERVICE")
                 )
                 // Route for submission-service

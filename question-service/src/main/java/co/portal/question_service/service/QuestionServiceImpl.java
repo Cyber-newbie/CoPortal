@@ -10,8 +10,15 @@ import co.portal.question_service.entity.QuizQuestionId;
 import co.portal.question_service.exception.QuestionSaveException;
 import co.portal.question_service.repository.QuestionRepository;
 import co.portal.question_service.repository.QuizQuestionRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,10 +27,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+@Slf4j
 public class QuestionServiceImpl implements QuestionService {
 
     private QuestionRepository questionRepository;
     private QuizQuestionRepository quizQuestionRepository;
+
+    @Value("${quiz.service.url}")
+    private String quizServiceUrl;
+
     @Autowired
     public QuestionServiceImpl(QuestionRepository questionRepository, QuizQuestionRepository quizQuestionRepository)
     {
@@ -32,13 +44,16 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public int checkQuestionAgainstUserAnswers(QuizDTO quiz, List<UserAnswers> userAnswers) {
-        int totalQuizMarks = Integer.parseInt(quiz.getMaxMarks());
-        int numberOfQuestions = Integer.parseInt(quiz.getNumberOfQuestions());
+    public int checkQuestionAgainstUserAnswers(int quizId, List<UserAnswers> userAnswers) throws Exception {
+
+        Response<QuizDTO>  quiz = getQuizInfo(quizId);
+
+        int totalQuizMarks = Integer.parseInt(quiz.getData().getMaxMarks());
+        int numberOfQuestions = Integer.parseInt(quiz.getData().getNumberOfQuestions());
         int eachQuestionMark = Math.round((float) totalQuizMarks / numberOfQuestions);
 
         //get quiz questions
-        List<Question> quizQuestions = getQuizQuestions(quiz.getId());
+        List<Question> quizQuestions = getQuizQuestions(quiz.getData().getId());
         int totalScoreSecured = 0;
         // Iterate over questions and calculate the score
         for (Question question : quizQuestions) {
@@ -56,7 +71,26 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Response createQuizQuestions(List<QuestionRequest> request, Integer quizId) throws Exception {
+    public Response<QuizDTO> getQuizInfo(Integer quizId) throws Exception {
+
+        log.info("URL: {} ", quizServiceUrl + "/user/" + quizId);
+        HttpResponse<String> response = Unirest.setDefaultHeader("Authorization", ).get(quizServiceUrl + "/user/" + quizId).asString();
+         log.info("response status and body [{}] {}", response.getStatus(), response.getBody());
+
+        // Check if response body is empty
+        if (response.getBody() == null || response.getBody().trim().isEmpty()) {
+            throw new RuntimeException("Empty response received from the quiz service");
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        TypeReference<Response<QuizDTO>> typeRef = new TypeReference<Response<QuizDTO>>() {};
+
+        return objectMapper.readValue(response.getBody(), typeRef);
+    }
+
+    @Override
+    public Response<List<Question>> createQuizQuestions(List<QuestionRequest> request, Integer quizId) throws Exception {
+
         // Create lists to hold new questions and existing question IDs
         List<Question> questionsList = new ArrayList<>();
         List<Integer> existingQuestionIds = new ArrayList<>();
@@ -103,7 +137,7 @@ public class QuestionServiceImpl implements QuestionService {
             // Save the quiz-question associations
             quizQuestionRepository.saveAll(quizQuestionsList);
 
-            return new Response(savedQuestions);
+            return new Response<>(savedQuestions);
         } catch (Exception e) {
             throw new QuestionSaveException("Failed to save questions", e);
         }
@@ -112,8 +146,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> getQuizQuestions(int quizId) {
-        return null;
-//                questionRepository.findByQuizId(quizId);
+        return quizQuestionRepository.getQuizQuestions(quizId);
 
     }
 }
