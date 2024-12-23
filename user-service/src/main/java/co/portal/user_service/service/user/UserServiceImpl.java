@@ -98,25 +98,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User createAdmin(Roles role) throws Exception {
-        List<User> users = userRepository.findUsersByRoles(role); // Expecting a list of users
-        Roles managedRole = entityManager.merge(role);
+    public User createAdmin() throws Exception {
+        Roles createdRole = Optional.ofNullable(roleRepository.findByRole("ADMIN")).orElseGet(() -> {
+            Roles role = Roles.builder().role("ADMIN").build();
+            return roleRepository.save(role);
+        });
+
+
+        List<User> users = userRepository.findUsersByRoles(createdRole); // Expecting a list of users
         if(users.isEmpty()) {
             //create admin
             User user = new User();
-            user.setUsername("admin");
+            user.setUsername("portalAdmin");
             user.setPassword("admin");
             user.setFirstName("admin");
             user.setLastName("");
             user.setEmail("admin@coPortal.com");
 
             List<Roles> roles = new ArrayList<>();
-            roles.add(managedRole);
+            roles.add(createdRole);
             user.setRoles(roles);
             userRepository.save(user);
             System.out.println("Admin created");
         }
-        System.out.println("Admin already exists");
         return null;
     }
 

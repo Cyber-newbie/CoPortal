@@ -20,7 +20,7 @@ public interface UserService {
 
     UserResponse login(LoginRequest request) throws Exception;
 
-    User createAdmin(Roles role) throws Exception;
+    User createAdmin() throws Exception;
 
     User assignRoleToUser(int userId, String[] Roles) throws Exception;
 
