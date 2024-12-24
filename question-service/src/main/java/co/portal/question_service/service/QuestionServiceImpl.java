@@ -8,6 +8,7 @@ import co.portal.question_service.entity.Question;
 import co.portal.question_service.entity.QuizQuestion;
 import co.portal.question_service.entity.QuizQuestionId;
 import co.portal.question_service.exception.QuestionSaveException;
+import co.portal.question_service.exception.QuizNotFoundException;
 import co.portal.question_service.repository.QuestionRepository;
 import co.portal.question_service.repository.QuizQuestionRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -32,21 +33,27 @@ public class QuestionServiceImpl implements QuestionService {
 
     private QuestionRepository questionRepository;
     private QuizQuestionRepository quizQuestionRepository;
+    private ObjectMapper objectMapper;
 
     @Value("${quiz.service.url}")
     private String quizServiceUrl;
 
     @Autowired
-    public QuestionServiceImpl(QuestionRepository questionRepository, QuizQuestionRepository quizQuestionRepository)
+    public QuestionServiceImpl(QuestionRepository questionRepository,
+                               QuizQuestionRepository quizQuestionRepository,
+                               ObjectMapper objectMapper)
     {
         this.questionRepository = questionRepository;
         this.quizQuestionRepository = quizQuestionRepository;
+        this.objectMapper = objectMapper;
     }
 
     @Override
-    public int checkQuestionAgainstUserAnswers(int quizId, List<UserAnswers> userAnswers) throws Exception {
+    public int checkQuestionAgainstUserAnswers(int quizId,
+                                               List<UserAnswers> userAnswers,
+                                               String token) throws Exception {
 
-        Response<QuizDTO>  quiz = getQuizInfo(quizId);
+        Response<QuizDTO>  quiz = getQuizInfo(quizId, token);
 
         int totalQuizMarks = Integer.parseInt(quiz.getData().getMaxMarks());
         int numberOfQuestions = Integer.parseInt(quiz.getData().getNumberOfQuestions());
@@ -71,25 +78,26 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Response<QuizDTO> getQuizInfo(Integer quizId) throws Exception {
+    public Response<QuizDTO> getQuizInfo(Integer quizId, String token) throws Exception {
 
-        log.info("URL: {} ", quizServiceUrl + "/user/" + quizId);
-        HttpResponse<String> response = Unirest.setDefaultHeader("Authorization", ).get(quizServiceUrl + "/user/" + quizId).asString();
+        log.info("URL: {} {}", quizServiceUrl + "/user/" + quizId, token);
+        HttpResponse<String> response = Unirest.get(quizServiceUrl + "/user/" + quizId)
+                .getHttpRequest().header("Authorization", token)
+                .asString();
          log.info("response status and body [{}] {}", response.getStatus(), response.getBody());
 
         // Check if response body is empty
         if (response.getBody() == null || response.getBody().trim().isEmpty()) {
-            throw new RuntimeException("Empty response received from the quiz service");
+            throw new QuizNotFoundException("Could not find quiz with id " + quizId);
         }
 
-        ObjectMapper objectMapper = new ObjectMapper();
         TypeReference<Response<QuizDTO>> typeRef = new TypeReference<Response<QuizDTO>>() {};
 
         return objectMapper.readValue(response.getBody(), typeRef);
     }
 
     @Override
-    public Response<List<Question>> createQuizQuestions(List<QuestionRequest> request, Integer quizId) throws Exception {
+    public List<Question> createQuizQuestions(List<QuestionRequest> request, Integer quizId) throws Exception {
 
         // Create lists to hold new questions and existing question IDs
         List<Question> questionsList = new ArrayList<>();
@@ -137,7 +145,7 @@ public class QuestionServiceImpl implements QuestionService {
             // Save the quiz-question associations
             quizQuestionRepository.saveAll(quizQuestionsList);
 
-            return new Response<>(savedQuestions);
+            return savedQuestions;
         } catch (Exception e) {
             throw new QuestionSaveException("Failed to save questions", e);
         }

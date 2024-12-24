@@ -39,7 +39,8 @@ public  class User implements UserDetails {
     @Column()
     private Boolean enabled = true;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "userRole",
             joinColumns = @JoinColumn(name = "userId"),

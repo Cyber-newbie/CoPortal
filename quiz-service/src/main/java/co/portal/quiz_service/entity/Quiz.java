@@ -50,6 +50,7 @@ public class Quiz {
 
     private long userId;
 
+
     @Transient
     private List<Question> questions = new ArrayList<>();
 

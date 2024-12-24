@@ -1,11 +1,14 @@
 package co.portal.submission_service.services.submission;
 
+import co.portal.submission_service.dto.Response;
 import co.portal.submission_service.dto.quiz.QuizDTO;
 import co.portal.submission_service.dto.submission.SubmissionRequest;
 import co.portal.submission_service.dto.user.UserDTO;
 import co.portal.submission_service.entity.Submission;
 import co.portal.submission_service.repository.SubmissionRepository;
 import co.portal.submission_service.utils.Utils;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -28,6 +31,7 @@ public class SubmissionServiceImpl  implements SubmissionService {
 
     private SubmissionRepository submissionRepository;
     private  EntityManager entityManager;
+    private ObjectMapper objectMapper;
     private Utils utils;
 
     @Value("${user.service.url}")
@@ -36,25 +40,28 @@ public class SubmissionServiceImpl  implements SubmissionService {
     @Value("${quiz.service.url}")
     private String quizServiceUrl;
 
+    @Value("${question.service.url}")
+    private String questionServiceUrl;
+
     @Autowired
     public SubmissionServiceImpl(
                                  SubmissionRepository submissionRepository,
                                  EntityManager entityManager,
-                                 Utils utils) {
+                                 Utils utils,
+                                 ObjectMapper om) {
         this.submissionRepository = submissionRepository;
         this.entityManager = entityManager;
         this.utils = utils;
+        this.objectMapper = om;
     }
 
     public UserDTO getLoggedInUser(String username) {
         log.info("USER SERVICE URL: {}", userServiceUrl + "/" + username);
         try {
             HttpResponse<UserDTO> user = Unirest.get(userServiceUrl + "/" + username).asObject(UserDTO.class);
-            log.info("LOGGED IN USER {}" ,  user);
+            log.info("LOGGED IN USER {}" ,  user.getBody());
             return user.getBody();
-        } catch (RestClientException e) {
-            throw new RuntimeException(e);
-        } catch (UnirestException e) {
+        } catch (RestClientException | UnirestException e) {
             throw new RuntimeException(e);
         }
     }
@@ -63,8 +70,11 @@ public class SubmissionServiceImpl  implements SubmissionService {
     @Transactional
     public Submission createSubmission(SubmissionRequest request,
                                        QuizDTO quiz,
-                                       Integer securedScore,
+                                       int securedScore,
                                        String username) throws Exception {
+
+        log.info("CREATING SUBMISSION ");
+
         UserDTO user = getLoggedInUser(username);
         Integer quizId = quiz.getId();
 
@@ -110,15 +120,46 @@ public class SubmissionServiceImpl  implements SubmissionService {
     @Transactional
     public Submission evaluateQuizSubmit(SubmissionRequest request, String quizId, String username) throws Exception {
 
+        String token = utils.getAuthorizationHeader();
+        TypeReference<Response<Integer>> intRef = new TypeReference<Response<Integer>>() {};
+        TypeReference<Response<QuizDTO>> quizRef = new TypeReference<Response<QuizDTO>>() {};
 
         // Fetch the quiz using the quiz ID
-        HttpResponse<QuizDTO> quiz = Unirest.get(quizServiceUrl + "/user/" + quizId).asObject(QuizDTO.class);
+        HttpResponse<String> quizResponse = Unirest.get(quizServiceUrl + "/user/" + quizId)
+                .getHttpRequest()
+                .header("Authorization", token)
+                .asString();
 
-        // Calculate the total score secured by the user
-        Integer totalSecuredNumber = questionService.checkQuestionAgainstUserAnswers(quiz, request.getUserAnswers());
+
+        log.info("GET QUIZ REQUEST: status [{}] with body [{}]", quizResponse.getStatus(), quizResponse.getBody() );
+
+        if (quizResponse.getBody() == null || quizResponse.getBody().trim().isEmpty()) {
+            throw new Exception("Quiz service failed to provide data " + quizId);
+        }
+
+        //get total secured marks
+        HttpResponse<String> response = Unirest.post(questionServiceUrl + "/check/" + quizId)
+                .body(request.getUserAnswers())
+                .getHttpRequest()
+                .header("Authorization", token)
+                .header("Content-Type", "application/json")
+                .asString();
+
+
+
+        log.info("POST ANSWER REQUEST: status [{}] with body [{}]", response.getStatus(), response.getBody() );
+
+        // Check if response body is empty
+        if (response.getBody() == null || response.getBody().trim().isEmpty()) {
+            throw new Exception("Question service failed to provide data " + quizId);
+        }
+
+        ;
+        Response<Integer> totalSecuredNumber = objectMapper.readValue(response.getBody(), intRef);
+        Response<QuizDTO>  quiz = objectMapper.readValue(quizResponse.getBody(), quizRef);
 
         // Create or update the submission with the score
-        return createSubmission(request, quiz, totalSecuredNumber, username);
+        return createSubmission(request, quiz.getData(), totalSecuredNumber.getData(), username);
     }
 
 }

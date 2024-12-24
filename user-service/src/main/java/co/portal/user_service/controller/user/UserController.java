@@ -52,7 +52,7 @@ public class UserController {
     public ResponseEntity<?> getUser(@PathVariable String username) throws Exception {
 
         try {
-            User user = this.userService.getUserByName(username);
+            UserDTO user = this.userService.getUserByName(username);
 
             log.info("get user by username: {}", username);
 

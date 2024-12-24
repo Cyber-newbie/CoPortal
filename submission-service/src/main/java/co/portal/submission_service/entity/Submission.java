@@ -22,12 +22,9 @@ public class Submission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
     @JoinColumn(name = "quiz_id")
-//    @JsonBackReference
     private int quizId;
 
-//    @ManyToOne
     @JoinColumn(name = "user_id")
     private long userId;
 

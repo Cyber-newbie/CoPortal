@@ -29,16 +29,20 @@ public class QuestionController {
 
     @PostMapping("/save/{quizId}")
     public ResponseEntity<Response<List<Question>>> saveQuizQuestions(@RequestBody List<QuestionRequest> request, @PathVariable Integer quizId) throws Exception {
-        Response<List<Question>> response = this.questionService.createQuizQuestions(request, quizId);
+
+        List<Question> questions = this.questionService.createQuizQuestions(request, quizId);
+        Response<List<Question>> response = new Response<>("201", "Questions added to quiz", questions);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PostMapping("/{quizId}")
+    @PostMapping("check/{quizId}")
     public ResponseEntity<Response<Integer>> checkUserAnswers(@Valid  @RequestBody List<UserAnswers> userAnswers,
-                                                     @PathVariable("quizId") Integer quizId) throws Exception {
+                                                     @PathVariable("quizId") Integer quizId,
+                                                              @RequestHeader("Authorization") String token) throws Exception {
 
-        int totalSecuredNumber = questionService.checkQuestionAgainstUserAnswers(quizId, userAnswers);
-        Response<Integer> response = new Response<>(totalSecuredNumber);
+        int totalSecuredNumber = questionService.checkQuestionAgainstUserAnswers(quizId, userAnswers, token);
+        Response<Integer> response = new Response<>("200", "total number secured", totalSecuredNumber);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SubmissionRepository extends JpaRepository<Submission, Long> {
 
-    @Query("SELECT s FROM Submission s JOIN s.quiz q JOIN s.user u WHERE q.id = :quizId AND u.id = :userId ")
+    @Query("SELECT s FROM Submission s WHERE s.quizId = :quizId AND s.id = :userId ")
     Submission findByQuizAndUserId(@Param("quizId") int quizId, @Param("userId") Long userId);
 
     @Query("SELECT s FROM Submission s where s.userId = :userId")

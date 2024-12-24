@@ -12,11 +12,11 @@ import java.util.List;
 
 public interface QuestionService {
 
-    public Response<QuizDTO> getQuizInfo(Integer quizId) throws Exception;
+    public Response<QuizDTO> getQuizInfo(Integer quizId, String token) throws Exception;
 
-    public int checkQuestionAgainstUserAnswers(int quizId, List<UserAnswers> userAnswers) throws Exception;
+    public int checkQuestionAgainstUserAnswers(int quizId, List<UserAnswers> userAnswers, String token) throws Exception;
 
-    public Response createQuizQuestions(List<QuestionRequest> request, Integer quizId) throws Exception;
+    public List<Question> createQuizQuestions(List<QuestionRequest> request, Integer quizId) throws Exception;
 
     public List<Question> getQuizQuestions(int quizId);
 }

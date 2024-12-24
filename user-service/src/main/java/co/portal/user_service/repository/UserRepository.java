@@ -1,5 +1,6 @@
 package co.portal.user_service.repository;
 
+import co.portal.user_service.dto.user.UserDTO;
 import co.portal.user_service.entity.Roles;
 import co.portal.user_service.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
-
     User findById(long id);
 
     @Query("SELECT u FROM User u JOIN FETCH u.roles WHERE u.id = :id")

@@ -1,8 +1,6 @@
 package co.portal.user_service.service.user;
 
-import co.portal.user_service.dto.user.LoginRequest;
-import co.portal.user_service.dto.user.UserRequest;
-import co.portal.user_service.dto.user.UserResponse;
+import co.portal.user_service.dto.user.*;
 import co.portal.user_service.entity.Roles;
 import co.portal.user_service.entity.User;
 import co.portal.user_service.exception.RoleNotFoundException;
@@ -12,14 +10,12 @@ import co.portal.user_service.repository.RoleRepository;
 import co.portal.user_service.repository.UserRepository;
 import co.portal.user_service.utils.JwtUtils;
 import co.portal.user_service.utils.mapper.UserMapper;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -60,12 +56,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByName(String username) throws Exception {
+    public UserDTO getUserByName(String username) throws Exception {
         User user = this.userRepository.findByUsername(username);
         if(user == null) {
             throw new UserNotFoundException("User with username '" + username + "' not found");
         }
-        return user;
+
+        List<RoleDTO> roleList = new ArrayList<>();
+
+        for (Roles userRole : user.getRoles()){
+                RoleDTO role = RoleDTO.builder()
+                        .id(userRole.getId())
+                        .role(userRole.getRole())
+                        .build();
+                roleList.add(role);
+        }
+
+        UserDTO userDTO = UserDTO.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .roles(roleList)
+                .build();
+
+        return userDTO;
     }
 
     @Override

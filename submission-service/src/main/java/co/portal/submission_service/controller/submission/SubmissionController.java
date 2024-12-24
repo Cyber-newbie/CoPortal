@@ -23,12 +23,12 @@ public class SubmissionController {
         this.submissionService = submissionService;
     }
 
-    @PostMapping("/{quizId}")
-    public ResponseEntity<SubmissionResponse<Submission>> submit(@PathVariable("quizId") String quizId,
-                                                                 @Valid @RequestBody SubmissionRequest request,
+    @PostMapping
+    public ResponseEntity<SubmissionResponse<Submission>> submit(@Valid @RequestBody SubmissionRequest request,
                                                                  @RequestHeader("loggedInUsername") String username )
             throws Exception {
 
+        String quizId = String.valueOf(request.getQuizId());
 
         Submission submission = submissionService.evaluateQuizSubmit(request, quizId, username);
 

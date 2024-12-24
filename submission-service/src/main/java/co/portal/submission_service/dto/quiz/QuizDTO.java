@@ -1,21 +1,22 @@
 package co.portal.submission_service.dto.quiz;
 
 import co.portal.submission_service.dto.question.QuestionDTO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class QuizDTO {
 
     private int id;
@@ -40,6 +41,7 @@ public class QuizDTO {
 
     private long userId;
 
-    private List<QuestionDTO> questions = new ArrayList<>();
+    @Null
+    private Object[] questions;
 
 }
