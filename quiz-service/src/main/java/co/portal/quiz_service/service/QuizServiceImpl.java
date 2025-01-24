@@ -81,7 +81,8 @@ public class QuizServiceImpl implements QuizService {
             Quiz createdQuiz = quizRepository.save(newQuiz);
 
             //create questions
-            Optional<QuestionResponse> response = Optional.ofNullable(restTemplate.postForObject(questionServiceUrl + "/save/" + createdQuiz.getId(),
+            Optional<QuestionResponse> response = Optional.ofNullable(restTemplate.
+                    postForObject(questionServiceUrl + "/save/" + createdQuiz.getId(),
                     quiz.getQuestions(), QuestionResponse.class));
 
             response.ifPresent(questionResponse -> newQuiz.setQuestions(questionResponse.getQuestions()));
@@ -94,18 +95,10 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Quiz getQuiz(int id) throws Exception {
-        return this.quizRepository.findById(id).orElseThrow(() -> new Exception("Quiz not found"));
+        return this.quizRepository.findById(id).orElseThrow(() -> new QuizNotFoundException("Quiz not found"));
+
     }
 
-//    @Override
-//    public List<Question> getQuizQuestions(int quizId) throws Exception {
-//
-//        Quiz quiz = this.quizRepository.findById(quizId).orElseThrow(() ->
-//                new QuizNotFoundException("Quiz not found"));
-//
-//        return this.quizRepository.getQuizQuestions(quizId);
-
-//    }
     @Override
     public List<Quiz> getAllQuizes() throws Exception {
         return this.quizRepository.findAll();

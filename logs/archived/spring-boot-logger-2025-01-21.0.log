@@ -1,0 +1,502 @@
+2025-01-21 10:04:52,831 INFO  [background-preinit] gateway.Version: HV000001: Hibernate Validator 6.2.5.Final
+2025-01-21 10:04:53,000 INFO  [main] gateway.GatewayApplication: Starting GatewayApplication using Java 1.8.0_432 on HASAN-HAIDER with PID 28892 (D:\co-quiz\gateway\target\classes started by HasanHaider in D:\co-quiz\gateway)
+2025-01-21 10:04:53,005 INFO  [main] gateway.GatewayApplication: No active profile set, falling back to 1 default profile: "default"
+2025-01-21 10:04:58,819 INFO  [main] gateway.GenericScope: BeanFactory id=334ccd63-eb51-3ee2-9704-dd815a95578a
+2025-01-21 10:04:59,364 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-21 10:04:59,382 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-21 10:04:59,386 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-21 10:05:04,967 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 10:05:04,971 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 10:05:04,973 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 10:05:04,975 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 10:05:04,977 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 10:05:04,979 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 10:05:04,983 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 10:05:15,114 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [After]
+2025-01-21 10:05:15,140 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Before]
+2025-01-21 10:05:15,142 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Between]
+2025-01-21 10:05:15,152 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Cookie]
+2025-01-21 10:05:15,154 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Header]
+2025-01-21 10:05:15,154 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Host]
+2025-01-21 10:05:15,154 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Method]
+2025-01-21 10:05:15,158 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Path]
+2025-01-21 10:05:15,160 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Query]
+2025-01-21 10:05:15,160 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [ReadBody]
+2025-01-21 10:05:15,162 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [RemoteAddr]
+2025-01-21 10:05:15,166 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2025-01-21 10:05:15,168 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Weight]
+2025-01-21 10:05:15,188 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2025-01-21 10:05:23,966 INFO  [main] gateway.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-01-21 10:05:24,779 INFO  [main] gateway.DiscoveryClientOptionalArgsConfiguration: Eureka HTTP Client uses RestTemplate.
+2025-01-21 10:05:25,098 WARN  [main] gateway.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger: Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-21 10:05:25,180 INFO  [main] gateway.InstanceInfoFactory: Setting initial instance status as: STARTING
+2025-01-21 10:05:25,498 INFO  [main] gateway.DiscoveryClient: Initializing Eureka in region us-east-1
+2025-01-21 10:05:25,523 INFO  [main] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:05:25,619 INFO  [main] gateway.DiscoveryClient: Disable delta property : false
+2025-01-21 10:05:25,619 INFO  [main] gateway.DiscoveryClient: Single vip registry refresh property : null
+2025-01-21 10:05:25,619 INFO  [main] gateway.DiscoveryClient: Force full registry fetch : false
+2025-01-21 10:05:25,619 INFO  [main] gateway.DiscoveryClient: Application is null : false
+2025-01-21 10:05:25,619 INFO  [main] gateway.DiscoveryClient: Registered Applications size is zero : true
+2025-01-21 10:05:25,619 INFO  [main] gateway.DiscoveryClient: Application version is -1: true
+2025-01-21 10:05:25,621 INFO  [main] gateway.DiscoveryClient: Getting all instance registry info from the eureka server
+2025-01-21 10:05:27,959 INFO  [main] gateway.DiscoveryClient: The response status is 200
+2025-01-21 10:05:27,959 INFO  [main] gateway.DiscoveryClient: Starting heartbeat executor: renew interval is: 30
+2025-01-21 10:05:27,975 INFO  [main] gateway.InstanceInfoReplicator: InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-01-21 10:05:27,991 INFO  [main] gateway.DiscoveryClient: Discovery Client initialized at timestamp 1737435927984 with initial instances count: 0
+2025-01-21 10:05:27,993 INFO  [main] gateway.EurekaServiceRegistry: Registering application GATEWAY with eureka with status UP
+2025-01-21 10:05:27,995 INFO  [main] gateway.DiscoveryClient: Saw local status change event StatusChangeEvent [timestamp=1737435927995, current=UP, previous=STARTING]
+2025-01-21 10:05:27,997 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080: registering service...
+2025-01-21 10:05:28,795 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080 - registration status: 204
+2025-01-21 10:05:30,343 INFO  [main] gateway.NettyWebServer: Netty started on port 8080
+2025-01-21 10:05:30,346 INFO  [main] gateway.EurekaAutoServiceRegistration: Updating port to 8080
+2025-01-21 10:05:35,449 INFO  [main] gateway.GatewayApplication: Started GatewayApplication in 50.12 seconds (JVM running for 56.88)
+2025-01-21 10:05:57,981 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Disable delta property : false
+2025-01-21 10:05:57,981 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Single vip registry refresh property : null
+2025-01-21 10:05:57,981 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Force full registry fetch : false
+2025-01-21 10:05:57,981 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Application is null : false
+2025-01-21 10:05:57,981 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Registered Applications size is zero : true
+2025-01-21 10:05:57,981 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Application version is -1: false
+2025-01-21 10:05:57,981 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Getting all instance registry info from the eureka server
+2025-01-21 10:05:58,029 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: The response status is 200
+2025-01-21 10:10:25,638 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:15:25,646 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:20:25,664 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:25:25,671 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:30:25,686 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:38:50,570 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:43:50,574 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:48:50,589 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 10:53:50,603 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:04:54,435 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:09:54,453 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:14:54,463 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:19:54,479 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:24:54,484 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:29:54,502 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:34:54,510 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:39:54,516 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:44:54,520 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:49:54,531 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:54:54,546 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 11:59:54,560 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:04:54,575 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:09:54,588 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:14:54,600 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:19:54,609 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:24:56,462 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:47:32,402 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:52:32,409 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 12:57:32,410 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:02:32,416 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:07:32,429 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:12:32,437 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:17:32,444 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:22:32,452 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:27:32,459 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:32:32,464 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:37:32,477 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:42:32,488 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:47:32,491 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:52:32,496 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 13:57:32,506 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:02:32,523 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:07:32,537 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:12:32,550 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:17:32,560 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:22:32,578 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:27:32,580 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:32:32,589 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:37:32,596 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:42:32,606 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 14:47:32,620 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 15:33:11,097 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 15:33:21,086 INFO  [SpringApplicationShutdownHook] gateway.EurekaServiceRegistry: Unregistering application GATEWAY with eureka with status DOWN
+2025-01-21 15:33:21,086 INFO  [SpringApplicationShutdownHook] gateway.DiscoveryClient: Saw local status change event StatusChangeEvent [timestamp=1737455601086, current=DOWN, previous=UP]
+2025-01-21 15:33:21,089 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080: registering service...
+2025-01-21 15:33:23,270 INFO  [SpringApplicationShutdownHook] gateway.DiscoveryClient: Shutting down DiscoveryClient ...
+2025-01-21 15:33:25,212 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.RedirectingEurekaHttpClient: Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:791)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:717)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:608)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:876)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:782)
+	... 22 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 35 more
+
+2025-01-21 15:33:25,215 WARN  [DiscoveryClient-InstanceInfoReplicator-0] gateway.RetryableEurekaHttpClient: Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2025-01-21 15:33:26,281 INFO  [SpringApplicationShutdownHook] gateway.DiscoveryClient: Unregistering ...
+2025-01-21 15:33:29,301 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.RedirectingEurekaHttpClient: Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:791)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:717)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:608)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:876)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:782)
+	... 23 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 36 more
+
+2025-01-21 15:33:29,301 WARN  [DiscoveryClient-InstanceInfoReplicator-0] gateway.RetryableEurekaHttpClient: Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2025-01-21 15:33:29,311 WARN  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080 - registration failed Cannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:876)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2025-01-21 15:33:29,311 WARN  [DiscoveryClient-InstanceInfoReplicator-0] gateway.InstanceInfoReplicator: There was a problem with the instance info replicator
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:876)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2025-01-21 15:33:30,365 INFO  [SpringApplicationShutdownHook] gateway.RedirectingEurekaHttpClient: Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/GATEWAY/HASAN-HAIDER:gateway:8080": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/GATEWAY/HASAN-HAIDER:gateway:8080": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:791)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:717)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:608)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:197)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:190)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:213)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1163)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1156)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1120)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.doClose(ReactiveWebServerApplicationContext.java:149)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1032)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:782)
+	... 40 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 53 more
+
+2025-01-21 15:33:30,365 WARN  [SpringApplicationShutdownHook] gateway.RetryableEurekaHttpClient: Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/GATEWAY/HASAN-HAIDER:gateway:8080": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2025-01-21 15:33:30,367 ERROR [SpringApplicationShutdownHook] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080 - de-registration failedCannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:197)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:190)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:213)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1163)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1156)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1120)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1086)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.doClose(ReactiveWebServerApplicationContext.java:149)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1032)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
+	at java.lang.Thread.run(Thread.java:750)
+2025-01-21 15:33:30,393 INFO  [SpringApplicationShutdownHook] gateway.DiscoveryClient: Completed shut down of DiscoveryClient
+2025-01-21 15:33:51,226 INFO  [background-preinit] gateway.Version: HV000001: Hibernate Validator 6.2.5.Final
+2025-01-21 15:33:51,458 INFO  [main] gateway.GatewayApplication: Starting GatewayApplication using Java 1.8.0_432 on HASAN-HAIDER with PID 6976 (D:\co-quiz\gateway\target\classes started by HasanHaider in D:\co-quiz\gateway)
+2025-01-21 15:33:51,462 INFO  [main] gateway.GatewayApplication: No active profile set, falling back to 1 default profile: "default"
+2025-01-21 15:33:56,208 INFO  [main] gateway.GenericScope: BeanFactory id=334ccd63-eb51-3ee2-9704-dd815a95578a
+2025-01-21 15:33:56,751 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-21 15:33:56,757 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-21 15:33:56,762 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-21 15:34:01,215 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 15:34:01,220 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 15:34:01,222 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 15:34:01,223 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 15:34:01,226 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 15:34:01,228 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 15:34:01,230 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-21 15:34:05,684 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [After]
+2025-01-21 15:34:05,685 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Before]
+2025-01-21 15:34:05,685 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Between]
+2025-01-21 15:34:05,685 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Cookie]
+2025-01-21 15:34:05,685 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Header]
+2025-01-21 15:34:05,686 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Host]
+2025-01-21 15:34:05,686 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Method]
+2025-01-21 15:34:05,686 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Path]
+2025-01-21 15:34:05,686 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Query]
+2025-01-21 15:34:05,687 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [ReadBody]
+2025-01-21 15:34:05,687 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [RemoteAddr]
+2025-01-21 15:34:05,687 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2025-01-21 15:34:05,687 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Weight]
+2025-01-21 15:34:05,688 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2025-01-21 15:34:11,647 INFO  [main] gateway.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-01-21 15:34:12,281 INFO  [main] gateway.DiscoveryClientOptionalArgsConfiguration: Eureka HTTP Client uses RestTemplate.
+2025-01-21 15:34:12,553 WARN  [main] gateway.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger: Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-21 15:34:12,631 INFO  [main] gateway.InstanceInfoFactory: Setting initial instance status as: STARTING
+2025-01-21 15:34:12,856 INFO  [main] gateway.DiscoveryClient: Initializing Eureka in region us-east-1
+2025-01-21 15:34:12,879 INFO  [main] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 15:34:12,957 INFO  [main] gateway.DiscoveryClient: Disable delta property : false
+2025-01-21 15:34:12,958 INFO  [main] gateway.DiscoveryClient: Single vip registry refresh property : null
+2025-01-21 15:34:12,958 INFO  [main] gateway.DiscoveryClient: Force full registry fetch : false
+2025-01-21 15:34:12,958 INFO  [main] gateway.DiscoveryClient: Application is null : false
+2025-01-21 15:34:12,959 INFO  [main] gateway.DiscoveryClient: Registered Applications size is zero : true
+2025-01-21 15:34:12,959 INFO  [main] gateway.DiscoveryClient: Application version is -1: true
+2025-01-21 15:34:12,959 INFO  [main] gateway.DiscoveryClient: Getting all instance registry info from the eureka server
+2025-01-21 15:34:14,536 INFO  [main] gateway.DiscoveryClient: The response status is 200
+2025-01-21 15:34:14,543 INFO  [main] gateway.DiscoveryClient: Starting heartbeat executor: renew interval is: 30
+2025-01-21 15:34:14,552 INFO  [main] gateway.InstanceInfoReplicator: InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-01-21 15:34:14,568 INFO  [main] gateway.DiscoveryClient: Discovery Client initialized at timestamp 1737455654565 with initial instances count: 0
+2025-01-21 15:34:14,572 INFO  [main] gateway.EurekaServiceRegistry: Registering application GATEWAY with eureka with status UP
+2025-01-21 15:34:14,574 INFO  [main] gateway.DiscoveryClient: Saw local status change event StatusChangeEvent [timestamp=1737455654574, current=UP, previous=STARTING]
+2025-01-21 15:34:14,579 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080: registering service...
+2025-01-21 15:34:15,102 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080 - registration status: 204
+2025-01-21 15:34:17,019 INFO  [main] gateway.NettyWebServer: Netty started on port 8080
+2025-01-21 15:34:17,022 INFO  [main] gateway.EurekaAutoServiceRegistration: Updating port to 8080
+2025-01-21 15:34:23,084 INFO  [main] gateway.GatewayApplication: Started GatewayApplication in 37.279 seconds (JVM running for 41.343)
+2025-01-21 15:34:44,625 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Disable delta property : false
+2025-01-21 15:34:44,626 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Single vip registry refresh property : null
+2025-01-21 15:34:44,626 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Force full registry fetch : false
+2025-01-21 15:34:44,626 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Application is null : false
+2025-01-21 15:34:44,627 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Registered Applications size is zero : true
+2025-01-21 15:34:44,627 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Application version is -1: false
+2025-01-21 15:34:44,627 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: Getting all instance registry info from the eureka server
+2025-01-21 15:34:44,721 INFO  [DiscoveryClient-CacheRefreshExecutor-0] gateway.DiscoveryClient: The response status is 200
+2025-01-21 15:37:53,642 INFO  [reactor-http-nio-3] gateway.RequestInterceptFilter: GL0BAL FILTER INVOKED
+2025-01-21 15:37:53,708 INFO  [reactor-http-nio-3] gateway.RequestInterceptFilter: LAST BLOCK Incoming Request: [POST] http://localhost:8080/auth/login status: 200 OK with Body: {
+    "username": "hasan112",
+    "password": "hasan123"
+}
+2025-01-21 15:37:56,255 INFO  [reactor-http-nio-3] gateway.RequestInterceptFilter: Outgoing Response: Status Code [200 OK], Body: {"status":"200","message":"Login successful","user":{"id":11,"firstName":"hassan","lastName":"Haider","email":"hasan@gmail.com","password":"$2a$10$GCzgWUq/9gn94uJ0xSpapOihLbQlwCkZhv6BM79SwICN2UXBZtogq","username":"hasan112","phone":"123-456-7890","enabled":true,"roles":[{"id":12,"role":"USER"},{"id":21,"role":"INSTRUCTOR"}],"authorities":[{"authority":"USER"},{"authority":"INSTRUCTOR"}],"accountNonExpired":false,"accountNonLocked":true,"credentialsNonExpired":true},"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXNhbjExMiIsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfSU5TVFJVQ1RPUiJdLCJleHAiOjE3Mzc0OTE4NzUsImlhdCI6MTczNzQ1NTg3NX0.6zRMdz4d2LzzziJLhR2zSSyQlhiFkwGc7V9HBYxgJfU"}
+2025-01-21 15:37:56,264 INFO  [reactor-http-nio-3] gateway.RabbitMQService: SENDING PAYLOAD: ActivityLog(username=UNKNOWN, statusCode=200 OK, ipAddress=0:0:0:0:0:0:0:1, requestBody={
+    "username": "hasan112",
+    "password": "hasan123"
+}, responseBody={"status":"200","message":"Login successful","user":{"id":11,"firstName":"hassan","lastName":"Haider","email":"hasan@gmail.com","password":"$2a$10$GCzgWUq/9gn94uJ0xSpapOihLbQlwCkZhv6BM79SwICN2UXBZtogq","username":"hasan112","phone":"123-456-7890","enabled":true,"roles":[{"id":12,"role":"USER"},{"id":21,"role":"INSTRUCTOR"}],"authorities":[{"authority":"USER"},{"authority":"INSTRUCTOR"}],"accountNonExpired":false,"accountNonLocked":true,"credentialsNonExpired":true},"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXNhbjExMiIsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfSU5TVFJVQ1RPUiJdLCJleHAiOjE3Mzc0OTE4NzUsImlhdCI6MTczNzQ1NTg3NX0.6zRMdz4d2LzzziJLhR2zSSyQlhiFkwGc7V9HBYxgJfU"}, requestURI=http://localhost:8080/auth/login, timestamp=2025-01-21)
+2025-01-21 15:37:56,279 INFO  [reactor-http-nio-3] gateway.CachingConnectionFactory: Attempting to connect to: localhost:5672
+2025-01-21 15:37:56,415 INFO  [reactor-http-nio-3] gateway.CachingConnectionFactory: Created new connection: connectionFactory#6cd64ee8:0/SimpleConnection@36479ec4 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 64364]
+2025-01-21 15:37:56,425 INFO  [reactor-http-nio-3] gateway.RabbitAdmin: Auto-declaring a non-durable, auto-delete, or exclusive Queue (db-queue) durable:false, auto-delete:false, exclusive:false. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+2025-01-21 15:37:56,514 INFO  [reactor-http-nio-3] gateway.RabbitMQService: SENDING DATA TO LOGGING SERVICE: ActivityLog(username=UNKNOWN, statusCode=200 OK, ipAddress=0:0:0:0:0:0:0:1, requestBody={
+    "username": "hasan112",
+    "password": "hasan123"
+}, responseBody={"status":"200","message":"Login successful","user":{"id":11,"firstName":"hassan","lastName":"Haider","email":"hasan@gmail.com","password":"$2a$10$GCzgWUq/9gn94uJ0xSpapOihLbQlwCkZhv6BM79SwICN2UXBZtogq","username":"hasan112","phone":"123-456-7890","enabled":true,"roles":[{"id":12,"role":"USER"},{"id":21,"role":"INSTRUCTOR"}],"authorities":[{"authority":"USER"},{"authority":"INSTRUCTOR"}],"accountNonExpired":false,"accountNonLocked":true,"credentialsNonExpired":true},"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXNhbjExMiIsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfSU5TVFJVQ1RPUiJdLCJleHAiOjE3Mzc0OTE4NzUsImlhdCI6MTczNzQ1NTg3NX0.6zRMdz4d2LzzziJLhR2zSSyQlhiFkwGc7V9HBYxgJfU"}, requestURI=http://localhost:8080/auth/login, timestamp=2025-01-21)
+2025-01-21 15:38:56,627 INFO  [reactor-http-nio-5] gateway.RequestInterceptFilter: GL0BAL FILTER INVOKED
+2025-01-21 15:38:57,513 WARN  [reactor-http-nio-5] gateway.RoundRobinLoadBalancer: No servers available for service: SUBMISSION-SERVICE
+2025-01-21 15:39:12,976 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 15:44:12,992 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 15:47:14,525 INFO  [reactor-http-nio-7] gateway.RequestInterceptFilter: GL0BAL FILTER INVOKED
+2025-01-21 15:47:14,538 WARN  [reactor-http-nio-7] gateway.RoundRobinLoadBalancer: No servers available for service: SUBMISSION-SERVICE
+2025-01-21 15:47:23,540 INFO  [reactor-http-nio-7] gateway.RequestInterceptFilter: GL0BAL FILTER INVOKED
+2025-01-21 15:47:23,797 INFO  [reactor-http-nio-8] gateway.RequestInterceptFilter: GL0BAL FILTER INVOKED
+2025-01-21 15:47:23,861 INFO  [reactor-http-nio-8] gateway.RequestInterceptFilter: Outgoing Response: Status Code [200 OK], Body: {"id":11,"firstName":"hassan","lastName":"Haider","username":"hasan112","email":"hasan@gmail.com","roles":[{"id":21,"role":"INSTRUCTOR"},{"id":12,"role":"USER"}]}
+2025-01-21 15:47:23,869 INFO  [reactor-http-nio-8] gateway.RabbitMQService: SENDING PAYLOAD: ActivityLog(username=UNKNOWN, statusCode=200 OK, ipAddress=127.0.0.1, requestBody=null, responseBody={"id":11,"firstName":"hassan","lastName":"Haider","username":"hasan112","email":"hasan@gmail.com","roles":[{"id":21,"role":"INSTRUCTOR"},{"id":12,"role":"USER"}]}, requestURI=http://localhost:8080/auth/hasan112, timestamp=2025-01-21)
+2025-01-21 15:47:23,871 INFO  [reactor-http-nio-8] gateway.RabbitMQService: SENDING DATA TO LOGGING SERVICE: ActivityLog(username=UNKNOWN, statusCode=200 OK, ipAddress=127.0.0.1, requestBody=null, responseBody={"id":11,"firstName":"hassan","lastName":"Haider","username":"hasan112","email":"hasan@gmail.com","roles":[{"id":21,"role":"INSTRUCTOR"},{"id":12,"role":"USER"}]}, requestURI=http://localhost:8080/auth/hasan112, timestamp=2025-01-21)
+2025-01-21 15:47:24,153 INFO  [reactor-http-nio-7] gateway.RequestInterceptFilter: Outgoing Response: Status Code [200 OK], Body: [{"submission":{"id":1,"quizId":6,"userId":11,"score":80,"submissionTime":"2024-12-02T12:41:26.347"},"quiz":{"id":6,"title":"Python Basics Quiz","description":"A quiz to test knowledge of basic Python programming concepts","maxMarks":"100","deadline":"2024-12-04T16:10:44.691","timeLimit":null,"numberOfQuestions":"10","active":false,"totalAttempts":1,"category":{"id":2,"title":"AI/ML","description":"All questions related to AI or Machine Learning "},"userId":17,"questions":[]}},{"submission":{"id":4,"quizId":22,"userId":11,"score":40,"submissionTime":"2024-12-24T18:57:39.11233"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals","description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}},{"submission":{"id":5,"quizId":22,"userId":11,"score":40,"submissionTime":"2025-01-06T17:26:58.196208"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals","description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}},{"submission":{"id":6,"quizId":22,"userId":11,"score":40,"submissionTime":"2025-01-06T18:41:31.668823"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals",
+2025-01-21 15:47:24,153 INFO  [reactor-http-nio-7] gateway.RabbitMQService: SENDING PAYLOAD: ActivityLog(username=hasan112, statusCode=200 OK, ipAddress=0:0:0:0:0:0:0:1, requestBody=null, responseBody=[{"submission":{"id":1,"quizId":6,"userId":11,"score":80,"submissionTime":"2024-12-02T12:41:26.347"},"quiz":{"id":6,"title":"Python Basics Quiz","description":"A quiz to test knowledge of basic Python programming concepts","maxMarks":"100","deadline":"2024-12-04T16:10:44.691","timeLimit":null,"numberOfQuestions":"10","active":false,"totalAttempts":1,"category":{"id":2,"title":"AI/ML","description":"All questions related to AI or Machine Learning "},"userId":17,"questions":[]}},{"submission":{"id":4,"quizId":22,"userId":11,"score":40,"submissionTime":"2024-12-24T18:57:39.11233"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals","description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}},{"submission":{"id":5,"quizId":22,"userId":11,"score":40,"submissionTime":"2025-01-06T17:26:58.196208"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals","description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}},{"submission":{"id":6,"quizId":22,"userId":11,"score":40,"submissionTime":"2025-01-06T18:41:31.668823"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals",, requestURI=http://localhost:8080/submission/user/details, timestamp=2025-01-21)
+2025-01-21 15:47:24,153 INFO  [reactor-http-nio-7] gateway.RabbitMQService: SENDING DATA TO LOGGING SERVICE: ActivityLog(username=hasan112, statusCode=200 OK, ipAddress=0:0:0:0:0:0:0:1, requestBody=null, responseBody=[{"submission":{"id":1,"quizId":6,"userId":11,"score":80,"submissionTime":"2024-12-02T12:41:26.347"},"quiz":{"id":6,"title":"Python Basics Quiz","description":"A quiz to test knowledge of basic Python programming concepts","maxMarks":"100","deadline":"2024-12-04T16:10:44.691","timeLimit":null,"numberOfQuestions":"10","active":false,"totalAttempts":1,"category":{"id":2,"title":"AI/ML","description":"All questions related to AI or Machine Learning "},"userId":17,"questions":[]}},{"submission":{"id":4,"quizId":22,"userId":11,"score":40,"submissionTime":"2024-12-24T18:57:39.11233"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals","description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}},{"submission":{"id":5,"quizId":22,"userId":11,"score":40,"submissionTime":"2025-01-06T17:26:58.196208"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals","description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}},{"submission":{"id":6,"quizId":22,"userId":11,"score":40,"submissionTime":"2025-01-06T18:41:31.668823"},"quiz":{"id":22,"title":"Network","description":"A quiz to test knowledge of fundamental network communication concepts","maxMarks":"100","deadline":"2025-01-30T16:10:44.691","timeLimit":"11:07:42","numberOfQuestions":"5","active":true,"totalAttempts":3,"category":{"id":1,"title":"Programming fundamentals",, requestURI=http://localhost:8080/submission/user/details, timestamp=2025-01-21)
+2025-01-21 15:47:24,163 INFO  [reactor-http-nio-7] gateway.RequestInterceptFilter: Outgoing Response: Status Code [200 OK], Body: "description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}}]
+2025-01-21 15:47:24,163 INFO  [reactor-http-nio-7] gateway.RabbitMQService: SENDING PAYLOAD: ActivityLog(username=hasan112, statusCode=200 OK, ipAddress=0:0:0:0:0:0:0:1, requestBody=null, responseBody="description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}}], requestURI=http://localhost:8080/submission/user/details, timestamp=2025-01-21)
+2025-01-21 15:47:24,165 INFO  [reactor-http-nio-7] gateway.RabbitMQService: SENDING DATA TO LOGGING SERVICE: ActivityLog(username=hasan112, statusCode=200 OK, ipAddress=0:0:0:0:0:0:0:1, requestBody=null, responseBody="description":"All questions related to programming and its core concepts "},"userId":17,"questions":[]}}], requestURI=http://localhost:8080/submission/user/details, timestamp=2025-01-21)
+2025-01-21 15:49:13,002 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 15:54:13,009 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 15:59:13,020 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:04:13,025 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:09:13,028 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:14:13,035 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:19:13,039 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:24:13,053 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:29:13,058 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:34:13,065 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:39:13,075 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:44:13,079 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:49:13,081 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 16:54:13,090 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:09:56,342 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:14:56,356 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:19:56,361 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:28:12,651 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:33:12,666 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:38:12,667 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:43:12,670 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:48:12,681 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 17:53:12,697 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 18:37:32,115 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 18:42:32,129 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 18:47:32,141 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 18:52:32,146 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 18:57:32,161 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:02:32,173 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:07:32,181 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:12:32,189 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:17:32,200 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:22:32,209 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:27:32,224 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:32:32,256 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:37:32,285 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:42:32,312 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:47:32,334 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 19:55:40,121 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 20:00:40,138 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-21 20:05:40,153 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration

@@ -63,7 +63,7 @@ public class GatewayConfig {
                                 .uri("lb://QUIZ-SERVICE")
                 )
                 .route("quiz-service", r -> r.path("/quiz/user/**")
-                        .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("USER"))))
+                        .filters(f -> f.filter(createJwtAuthorizationFilter("quiz-service", Arrays.asList("USER", "ADMIN"))))
                         .uri("lb://QUIZ-SERVICE")
                 )
                 // Route for question-service
@@ -74,7 +74,7 @@ public class GatewayConfig {
                 )
                 .route("question-service", r -> r.path("/question/**")
                         .filters(f -> f.filter(
-                                createJwtAuthorizationFilter("question-service", Arrays.asList("USER"))))
+                                createJwtAuthorizationFilter("question-service", Arrays.asList("USER", "ADMIN"))))
                         .uri("lb://QUESTION-SERVICE")
                 )
                 // Route for submission-service
@@ -166,5 +166,7 @@ public class GatewayConfig {
         exchange.getResponse().getHeaders().add("Content-Type", "application/json");
         return exchange.getResponse().writeWith(Mono.just(buffer));
     }
+
+
 
 }

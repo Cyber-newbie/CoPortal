@@ -1,5 +1,6 @@
 package co.portal.submission_service.controller.submission;
 
+import co.portal.submission_service.dto.SubmissionQuizDTO;
 import co.portal.submission_service.dto.submission.SubmissionRequest;
 import co.portal.submission_service.dto.submission.SubmissionResponse;
 import co.portal.submission_service.entity.Submission;
@@ -48,10 +49,41 @@ public class SubmissionController {
 
         SubmissionResponse<List<Submission>> response = new SubmissionResponse<>();
         response.setStatus("201");
-        response.setMessage("You have submitted successfully");
+        response.setMessage("Submissions fetched successfully");
         response.setData(userSubmissions);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
+
+    @GetMapping("/user/details")
+    public ResponseEntity<List<SubmissionQuizDTO>> getSubmissionsWithQuiz(@RequestHeader("loggedInUsername") String username) throws Exception {
+        try {
+
+        List<SubmissionQuizDTO> userSubmissions = submissionService.getSubmissionsWithQuiz(username);
+        return ResponseEntity.status(HttpStatus.OK).body(userSubmissions);
+
+        } catch(Exception e) {
+            throw new Exception("User submissions with quiz fetch failed ");
+
+        }
+    }
+
+    @GetMapping("/user/analytics")
+    public ResponseEntity<SubmissionResponse<Object>> getUserSubmissionAnalytics() throws Exception {
+
+        //aspect will inject the user object
+        List<SubmissionQuizDTO> submissions = submissionService.submissionAnalysis(null);
+
+        SubmissionResponse<Object> response = SubmissionResponse.builder()
+                .status("200")
+                .message("User's submission analytics")
+                .data(submissions)
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+
+
+    }
+
 }

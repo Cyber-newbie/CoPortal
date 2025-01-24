@@ -7,11 +7,22 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Component
 public class Utils {
 
+    public int extractTimeInSeconds(LocalTime time){
+
+        int hours = time.getHour();
+        int minutes = time.getMinute();
+        int seconds = time.getSecond();
+        return hours * 3600 + minutes * 60 + seconds;
+
+    }
+
     public Boolean checkQuizDeadline(LocalDateTime deadline, LocalDateTime submissionTime ) {
+
         return deadline.isAfter(submissionTime) || deadline.equals(submissionTime);
     }
 

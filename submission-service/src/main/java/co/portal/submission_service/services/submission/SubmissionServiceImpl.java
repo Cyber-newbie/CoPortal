@@ -1,10 +1,16 @@
 package co.portal.submission_service.services.submission;
 
+import co.portal.submission_service.aspect.annotation.GetUserObject;
 import co.portal.submission_service.dto.Response;
+import co.portal.submission_service.dto.SubmissionQuizDTO;
+import co.portal.submission_service.dto.analysis.SubmissionAnalysis;
 import co.portal.submission_service.dto.quiz.QuizDTO;
 import co.portal.submission_service.dto.submission.SubmissionRequest;
 import co.portal.submission_service.dto.user.UserDTO;
+import co.portal.submission_service.entity.Analytics;
 import co.portal.submission_service.entity.Submission;
+import co.portal.submission_service.exception.TimeLimitExceedException;
+import co.portal.submission_service.exception.TotalAttempExceedException;
 import co.portal.submission_service.repository.SubmissionRepository;
 import co.portal.submission_service.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -16,12 +22,16 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.EntityManager;
+import javax.validation.constraints.Null;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +52,16 @@ public class SubmissionServiceImpl  implements SubmissionService {
 
     @Value("${question.service.url}")
     private String questionServiceUrl;
+
+    @Value("${points.quizMarks}")
+    private Integer quizPoints;
+
+    @Value("${points.attempts}")
+    private Integer attemptPoints;
+
+    @Value("${points.time}")
+    private Integer timePoints;
+
 
     @Autowired
     public SubmissionServiceImpl(
@@ -77,22 +97,20 @@ public class SubmissionServiceImpl  implements SubmissionService {
 
         UserDTO user = getLoggedInUser(username);
         Integer quizId = quiz.getId();
+        Integer userTotalSubmissions = getUserSubmissionCount(user.getId(), quizId);
 
-        Optional<Submission> existingSubmission = checkUserSubmission(String.valueOf(quizId), user.getId());
-
-        if (!utils.checkQuizDeadline(quiz.getDeadline(), request.getSubmissionTime())) {
-            throw new Exception("You have exceeded the time limit");
+        if(userTotalSubmissions >= quiz.getTotalAttempts()){
+            log.error("Quiz total attempts already utilized by user!");
+            throw new TotalAttempExceedException("You have already utilized total attempts");
         }
 
-        Submission submission = existingSubmission.orElseGet(() -> {
-            Submission newSubmission = new Submission();
-            newSubmission.setUserId(user.getId());
-            newSubmission.setQuizId(quiz.getId());
+        if (!utils.checkQuizDeadline(quiz.getDeadline(), request.getSubmissionTime())) {
+            throw new TimeLimitExceedException("You have exceeded the time limit");
+        }
 
-            return newSubmission;
-        });
-
-        // Update the submission details
+        Submission submission = new Submission();
+        submission.setUserId(user.getId());
+        submission.setQuizId(quiz.getId());
         submission.setScore(securedScore);
         submission.setSubmissionTime(request.getSubmissionTime());
 
@@ -108,6 +126,10 @@ public class SubmissionServiceImpl  implements SubmissionService {
         return Optional.ofNullable(submission);
     }
 
+    @Override
+    public Integer getUserSubmissionCount(long userId, int quizId) {
+        return this.submissionRepository.countByUserId(userId, quizId);
+    }
 
 
     @Override
@@ -161,5 +183,70 @@ public class SubmissionServiceImpl  implements SubmissionService {
         // Create or update the submission with the score
         return createSubmission(request, quiz.getData(), totalSecuredNumber.getData(), username);
     }
+
+    public List<SubmissionQuizDTO> getSubmissionsWithQuiz(String username) throws Exception {
+        try {
+            UserDTO user = getLoggedInUser(username);
+            return submissionRepository.getUserSubmissionWithQuiz(user.getId());
+        } catch (Exception e) {
+            log.error("error occurred ", e);
+            throw new Exception("sdasd");
+        }
+    }
+
+    @GetUserObject
+    public List<SubmissionQuizDTO> submissionAnalysis(@Nullable UserDTO user) throws Exception {
+
+        log.info("user object received  {}", user);
+
+        if(user == null){
+            throw new IllegalArgumentException("User object cannot be null");
+        }
+
+        List<SubmissionQuizDTO> submissions = getSubmissionsWithQuiz(user.getUsername());
+
+        submissions.forEach(item -> {
+
+            long userId = user.getId();
+            int quizId = item.getQuiz().getId();
+
+            int obtainedMarks = item.getSubmission().getScore();
+            int totalMarks = Integer.parseInt(item.getQuiz().getMaxMarks());
+            int userSeconds = utils.extractTimeInSeconds(item.getSubmission().getTimeTaken());
+            int quizSeconds = utils.extractTimeInSeconds(item.getQuiz().getTimeLimit());
+            int userAttempts = getUserSubmissionCount(userId, quizId);
+            int quizAttempts = item.getQuiz().getTotalAttempts();
+
+            log.info("time factor {} {} {} ", quizSeconds, userSeconds, timePoints);
+            log.info("attempts factor {} {} {} ", quizAttempts, userAttempts, attemptPoints);
+
+            int marksFactor = (int) (((double) obtainedMarks/totalMarks) * quizPoints);
+            int timeFactor = (int) (timePoints * (((double) quizSeconds - userSeconds + 1.00) / quizSeconds));
+            int attemptsFactor = (int) (attemptPoints * (((double) quizAttempts - userAttempts + 1.00) / quizAttempts));
+
+            int pointsScored = marksFactor + timeFactor + attemptsFactor;
+
+            Analytics analytics = Analytics.builder()
+                    .attemptFactor(attemptsFactor)
+                    .marksFactor(marksFactor)
+                    .timeFactor(timeFactor)
+                    .pointsScored(pointsScored)
+                    .build();
+
+            item.setAnalytics(analytics);
+
+        });
+
+        return submissions;
+    }
+
+    private int getTotalPointsScored(List<SubmissionQuizDTO> submissions){
+       return submissions.stream().
+               mapToInt(item -> Math.toIntExact(item.getTotalPointsSecured()))
+               .sum();
+    }
+
+
+
 
 }

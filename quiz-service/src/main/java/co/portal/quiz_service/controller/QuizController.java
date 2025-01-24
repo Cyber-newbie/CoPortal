@@ -60,16 +60,9 @@ public class QuizController {
         response.setMessage("Quiz fetched by id: " + quizId);
         response.setStatus("200");
 
+        log.info("get quiz response {}", response.getData());
+
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-
-//    @GetMapping("/{quizId}")
-//    public ResponseEntity<QuestionResponse> getQuizQuestions(@PathVariable("quizId") Integer quizId) throws Exception {
-//
-//        List<Question> questions = this.quizService.getQuizQuestions(quizId);
-//        QuestionResponse response =  new QuestionResponse();
-//        response.setQuestions(questions);
-//        return ResponseEntity.status(HttpStatus.OK).body(response);
-//    }
 
 }

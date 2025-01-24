@@ -15,8 +15,12 @@ public interface SubmissionService {
 
     Optional<Submission> checkUserSubmission(String quizId, Long userId);
 
+    Integer getUserSubmissionCount(long userId, int quizId);
+
     List<Submission> getUserSubmissions(String username);
 
     Submission evaluateQuizSubmit(SubmissionRequest request, String quizId, String username) throws Exception;
+
+
 
 }

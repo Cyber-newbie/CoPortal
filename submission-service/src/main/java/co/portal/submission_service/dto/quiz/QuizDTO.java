@@ -37,6 +37,8 @@ public class QuizDTO {
 
     private Boolean active = false;
 
+    private int totalAttempts;
+
     private CategoryDTO category;
 
     private long userId;

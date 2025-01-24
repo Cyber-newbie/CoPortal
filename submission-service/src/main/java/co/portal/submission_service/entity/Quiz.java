@@ -1,6 +1,6 @@
-package co.portal.quiz_service.entity;
+package co.portal.submission_service.entity;
 
-import co.portal.quiz_service.dto.Question;
+import co.portal.submission_service.dto.question.QuestionDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -54,7 +54,7 @@ public class Quiz {
 
 
     @Transient
-    private List<Question> questions = new ArrayList<>();
+    private List<QuestionDTO> questions = new ArrayList<>();
 
     public Quiz(String title, String description, String maxMarks, String numberOfQuestions, Boolean active) {
         this.title = title;

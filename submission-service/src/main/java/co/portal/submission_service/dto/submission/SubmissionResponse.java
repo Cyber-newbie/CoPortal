@@ -1,12 +1,12 @@
 package co.portal.submission_service.dto.submission;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class SubmissionResponse<T> {
 
     private String status;

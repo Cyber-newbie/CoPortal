@@ -1,0 +1,1 @@
+2025-01-10 10:05:24,374 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration

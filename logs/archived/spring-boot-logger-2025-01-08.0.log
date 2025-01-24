@@ -1,0 +1,145 @@
+2025-01-08 10:21:27,710 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 10:26:27,742 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 10:31:27,752 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 10:36:27,766 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 10:41:27,726 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 10:46:27,683 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 10:51:27,635 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 10:56:27,586 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:01:27,544 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:06:27,515 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:11:27,481 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:16:27,460 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:21:27,446 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:26:27,427 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:31:27,413 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:36:27,405 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:45:40,554 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:50:40,568 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 11:55:40,581 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:00:40,596 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:05:40,613 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:10:40,623 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:15:40,635 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:20:40,644 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:25:40,650 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:30:40,653 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:35:40,661 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:40:40,665 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:45:40,668 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:50:40,677 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 12:59:21,616 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:04:21,624 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:09:21,638 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:14:21,653 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:19:21,663 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:24:21,669 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:25:08,926 INFO  [background-preinit] gateway.Version: HV000001: Hibernate Validator 6.2.5.Final
+2025-01-08 13:25:09,042 INFO  [main] gateway.GatewayApplication: Starting GatewayApplication using Java 1.8.0_432 on HASAN-HAIDER with PID 22796 (D:\co-quiz\gateway\target\classes started by HasanHaider in D:\co-quiz\gateway)
+2025-01-08 13:25:09,045 INFO  [main] gateway.GatewayApplication: No active profile set, falling back to 1 default profile: "default"
+2025-01-08 13:25:12,279 INFO  [main] gateway.GenericScope: BeanFactory id=334ccd63-eb51-3ee2-9704-dd815a95578a
+2025-01-08 13:25:12,511 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-08 13:25:12,516 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-08 13:25:12,520 INFO  [main] gateway.PostProcessorRegistrationDelegate$BeanPostProcessorChecker: Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-01-08 13:25:14,815 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-08 13:25:14,822 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-08 13:25:14,826 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-08 13:25:14,829 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-08 13:25:14,831 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-08 13:25:14,833 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-08 13:25:14,834 INFO  [main] gateway.GatewayConfig: JWT filter invoked
+2025-01-08 13:25:17,403 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [After]
+2025-01-08 13:25:17,404 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Before]
+2025-01-08 13:25:17,404 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Between]
+2025-01-08 13:25:17,404 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Cookie]
+2025-01-08 13:25:17,404 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Header]
+2025-01-08 13:25:17,405 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Host]
+2025-01-08 13:25:17,405 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Method]
+2025-01-08 13:25:17,405 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Path]
+2025-01-08 13:25:17,405 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Query]
+2025-01-08 13:25:17,405 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [ReadBody]
+2025-01-08 13:25:17,405 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [RemoteAddr]
+2025-01-08 13:25:17,405 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2025-01-08 13:25:17,406 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [Weight]
+2025-01-08 13:25:17,406 INFO  [main] gateway.RouteDefinitionRouteLocator: Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2025-01-08 13:25:20,954 INFO  [main] gateway.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-01-08 13:25:21,415 INFO  [main] gateway.DiscoveryClientOptionalArgsConfiguration: Eureka HTTP Client uses RestTemplate.
+2025-01-08 13:25:21,600 WARN  [main] gateway.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger: Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-08 13:25:21,675 INFO  [main] gateway.InstanceInfoFactory: Setting initial instance status as: STARTING
+2025-01-08 13:25:21,839 INFO  [main] gateway.DiscoveryClient: Initializing Eureka in region us-east-1
+2025-01-08 13:25:21,856 INFO  [main] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:25:21,950 INFO  [main] gateway.DiscoveryClient: Disable delta property : false
+2025-01-08 13:25:21,951 INFO  [main] gateway.DiscoveryClient: Single vip registry refresh property : null
+2025-01-08 13:25:21,951 INFO  [main] gateway.DiscoveryClient: Force full registry fetch : false
+2025-01-08 13:25:21,951 INFO  [main] gateway.DiscoveryClient: Application is null : false
+2025-01-08 13:25:21,951 INFO  [main] gateway.DiscoveryClient: Registered Applications size is zero : true
+2025-01-08 13:25:21,952 INFO  [main] gateway.DiscoveryClient: Application version is -1: true
+2025-01-08 13:25:21,952 INFO  [main] gateway.DiscoveryClient: Getting all instance registry info from the eureka server
+2025-01-08 13:25:22,961 INFO  [main] gateway.DiscoveryClient: The response status is 200
+2025-01-08 13:25:22,965 INFO  [main] gateway.DiscoveryClient: Starting heartbeat executor: renew interval is: 30
+2025-01-08 13:25:22,969 INFO  [main] gateway.InstanceInfoReplicator: InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-01-08 13:25:22,978 INFO  [main] gateway.DiscoveryClient: Discovery Client initialized at timestamp 1736324722976 with initial instances count: 5
+2025-01-08 13:25:22,982 INFO  [main] gateway.EurekaServiceRegistry: Registering application GATEWAY with eureka with status UP
+2025-01-08 13:25:22,983 INFO  [main] gateway.DiscoveryClient: Saw local status change event StatusChangeEvent [timestamp=1736324722983, current=UP, previous=STARTING]
+2025-01-08 13:25:22,988 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080: registering service...
+2025-01-08 13:25:23,135 INFO  [DiscoveryClient-InstanceInfoReplicator-0] gateway.DiscoveryClient: DiscoveryClient_GATEWAY/HASAN-HAIDER:gateway:8080 - registration status: 204
+2025-01-08 13:25:24,284 INFO  [main] gateway.NettyWebServer: Netty started on port 8080
+2025-01-08 13:25:24,287 INFO  [main] gateway.EurekaAutoServiceRegistration: Updating port to 8080
+2025-01-08 13:25:27,068 INFO  [main] gateway.GatewayApplication: Started GatewayApplication in 21.573 seconds (JVM running for 23.61)
+2025-01-08 13:30:21,962 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:35:21,975 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:43:31,655 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:48:31,665 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:53:31,679 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 13:58:31,682 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 14:03:31,699 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 14:08:31,703 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 14:13:31,715 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 14:18:31,727 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 15:39:43,392 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 15:44:43,394 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 15:49:43,399 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 15:54:43,415 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 15:59:43,430 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:04:43,433 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:09:43,449 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:14:43,466 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:19:43,483 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:24:43,495 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:29:43,500 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:34:43,505 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:39:43,509 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:44:59,613 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:49:59,630 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:54:59,646 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 16:59:59,653 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:04:59,658 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:09:59,663 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:14:59,679 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:19:59,684 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:24:59,698 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:29:59,706 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:34:59,711 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:39:59,717 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:44:59,723 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:49:59,736 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:54:59,742 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 17:59:59,757 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 18:04:59,767 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 18:10:20,318 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 18:15:20,330 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 18:20:20,336 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 18:25:20,347 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:01:35,644 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:06:35,661 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:11:35,669 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:16:35,681 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:21:35,689 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:26:35,696 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:36:26,539 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:41:26,541 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:46:26,554 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:51:26,571 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 19:56:26,579 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 20:01:26,586 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration
+2025-01-08 20:06:26,590 INFO  [AsyncResolver-bootstrap-executor-0] gateway.ConfigClusterResolver: Resolving eureka endpoints via configuration

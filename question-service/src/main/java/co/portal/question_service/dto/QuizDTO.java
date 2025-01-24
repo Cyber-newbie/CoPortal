@@ -32,6 +32,8 @@ public class QuizDTO {
 
         private boolean active;
 
+        private int totalAttempts;
+
         @Null
         private Object Category;
 

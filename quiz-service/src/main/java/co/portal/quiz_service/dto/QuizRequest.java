@@ -29,6 +29,8 @@ public class QuizRequest {
 
     private Boolean active = true;
 
+    private int totalAttempts = 1;
+
     @NotNull
     private int categoryId;
 
