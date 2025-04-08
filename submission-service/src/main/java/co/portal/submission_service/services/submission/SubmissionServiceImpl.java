@@ -12,6 +12,8 @@ import co.portal.submission_service.entity.Submission;
 import co.portal.submission_service.exception.TimeLimitExceedException;
 import co.portal.submission_service.exception.TotalAttempExceedException;
 import co.portal.submission_service.repository.SubmissionRepository;
+import co.portal.submission_service.services.calculation.CalculationService;
+import co.portal.submission_service.services.calculation.CalculationServiceImpl;
 import co.portal.submission_service.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,6 +42,7 @@ import java.util.Optional;
 public class SubmissionServiceImpl  implements SubmissionService {
 
     private SubmissionRepository submissionRepository;
+    private CalculationServiceImpl calculationService;
     private  EntityManager entityManager;
     private ObjectMapper objectMapper;
     private Utils utils;
@@ -66,10 +69,12 @@ public class SubmissionServiceImpl  implements SubmissionService {
     @Autowired
     public SubmissionServiceImpl(
                                  SubmissionRepository submissionRepository,
+                                 CalculationServiceImpl cal,
                                  EntityManager entityManager,
                                  Utils utils,
                                  ObjectMapper om) {
         this.submissionRepository = submissionRepository;
+        this.calculationService = cal;
         this.entityManager = entityManager;
         this.utils = utils;
         this.objectMapper = om;
@@ -203,50 +208,23 @@ public class SubmissionServiceImpl  implements SubmissionService {
             throw new IllegalArgumentException("User object cannot be null");
         }
 
+        long userId = user.getId();
+
         List<SubmissionQuizDTO> submissions = getSubmissionsWithQuiz(user.getUsername());
 
-        submissions.forEach(item -> {
+        submissions.forEach(submission -> {
 
-            long userId = user.getId();
-            int quizId = item.getQuiz().getId();
-
-            int obtainedMarks = item.getSubmission().getScore();
-            int totalMarks = Integer.parseInt(item.getQuiz().getMaxMarks());
-            int userSeconds = utils.extractTimeInSeconds(item.getSubmission().getTimeTaken());
-            int quizSeconds = utils.extractTimeInSeconds(item.getQuiz().getTimeLimit());
-            int userAttempts = getUserSubmissionCount(userId, quizId);
-            int quizAttempts = item.getQuiz().getTotalAttempts();
-
-            log.info("time factor {} {} {} ", quizSeconds, userSeconds, timePoints);
-            log.info("attempts factor {} {} {} ", quizAttempts, userAttempts, attemptPoints);
-
-            int marksFactor = (int) (((double) obtainedMarks/totalMarks) * quizPoints);
-            int timeFactor = (int) (timePoints * (((double) quizSeconds - userSeconds + 1.00) / quizSeconds));
-            int attemptsFactor = (int) (attemptPoints * (((double) quizAttempts - userAttempts + 1.00) / quizAttempts));
-
-            int pointsScored = marksFactor + timeFactor + attemptsFactor;
-
-            Analytics analytics = Analytics.builder()
-                    .attemptFactor(attemptsFactor)
-                    .marksFactor(marksFactor)
-                    .timeFactor(timeFactor)
-                    .pointsScored(pointsScored)
-                    .build();
-
-            item.setAnalytics(analytics);
-
+            Analytics analytics = calculationService.calculate(submission, userId);
+            submission.setAnalytics(analytics);
         });
 
         return submissions;
     }
 
-    private int getTotalPointsScored(List<SubmissionQuizDTO> submissions){
+    public int getTotalPointsScored(List<SubmissionQuizDTO> submissions){
        return submissions.stream().
-               mapToInt(item -> Math.toIntExact(item.getTotalPointsSecured()))
+               mapToInt(item -> Math.toIntExact(item.getAnalytics().getPointsScored()))
                .sum();
     }
-
-
-
 
 }

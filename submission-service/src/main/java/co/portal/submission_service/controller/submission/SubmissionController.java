@@ -1,6 +1,7 @@
 package co.portal.submission_service.controller.submission;
 
 import co.portal.submission_service.dto.SubmissionQuizDTO;
+import co.portal.submission_service.dto.analysis.SubmissionAnalysis;
 import co.portal.submission_service.dto.submission.SubmissionRequest;
 import co.portal.submission_service.dto.submission.SubmissionResponse;
 import co.portal.submission_service.entity.Submission;
@@ -74,11 +75,18 @@ public class SubmissionController {
 
         //aspect will inject the user object
         List<SubmissionQuizDTO> submissions = submissionService.submissionAnalysis(null);
+        int totalPointScored = submissionService.getTotalPointsScored(submissions);
+
+        SubmissionAnalysis data = SubmissionAnalysis.builder()
+                .submissionQuiz(submissions)
+                .overallPointsScored(totalPointScored)
+                .build();
+        ;
 
         SubmissionResponse<Object> response = SubmissionResponse.builder()
                 .status("200")
                 .message("User's submission analytics")
-                .data(submissions)
+                .data(data)
                 .build();
 
         return ResponseEntity.status(HttpStatus.OK).body(response);

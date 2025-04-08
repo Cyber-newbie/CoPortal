@@ -24,9 +24,6 @@ public class SubmissionQuizDTO {
     @Transient
     private Analytics analytics;
 
-    @Transient
-    private long totalPointsSecured;
-
     public SubmissionQuizDTO(Submission submission, Quiz quiz) {
         this.quiz = quiz;
         this.submission = submission;

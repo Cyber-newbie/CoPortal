@@ -40,7 +40,6 @@ public class AnalyticsServiceImpl implements AnalyticsService{
         return Collections.emptyList();
     }
 
-
     public List<QuizDTO> getUserQuizzes(int quizId, String token) throws Exception {
         TypeReference<ResponseDTO<List<QuizDTO>>> quizRef = new TypeReference<ResponseDTO<List<QuizDTO>>>() {
         };
@@ -51,8 +50,7 @@ public class AnalyticsServiceImpl implements AnalyticsService{
                     .header("Authorization", token)
                     .asString();
 
-            List<QuizDTO> quizzes = this.objectMapper.readValue(response.getBody(), quizRef).getData();
-            return quizzes;
+            return this.objectMapper.readValue(response.getBody(), quizRef).getData();
 
         } catch (Exception e){
             log.info("quiz get exception ", e);
